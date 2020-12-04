@@ -72,37 +72,37 @@
 
 ## Example of Custom Field Component
  
-  @Component({
-    selector: 'app-custom-field',
-    template: `
-    <div class="{{groupClass}}" [formGroup]="form" *ngIf="visible">
-      <label *ngIf="type !== 'checkbox'" [ngClass]="{'required': required }" [attr.for]="guid">{{label || key}}</label>
+    @Component({
+      selector: 'app-custom-field',
+      template: `
+      <div class="{{groupClass}}" [formGroup]="form" *ngIf="visible">
+        <label *ngIf="type !== 'checkbox'" [ngClass]="{'required': required }" [attr.for]="guid">{{label || key}}</label>
 
-      <!-- you could put in a switchcase for multiple field types here -->
-      <input class="{{inputClass}}" [formControlName]="key"
-        [ngClass]="{'is-invalid': error }" [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null"
-        (blur)="blur()" [id]="guid" type="text" placeholder="{{placeHolder || label}}">
+        <!-- you could put in a switchcase for multiple field types here -->
+        <input class="{{inputClass}}" [formControlName]="key"
+          [ngClass]="{'is-invalid': error }" [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null"
+          (blur)="blur()" [id]="guid" type="text" placeholder="{{placeHolder || label}}">
 
-      <span class="invalid-feedback {{error ? 'd-block': '' }}">{{error}}</span>
-    </div> 
-    `
-  })
-  export class MyFieldComponent extends FieldComponent {
+        <span class="invalid-feedback {{error ? 'd-block': '' }}">{{error}}</span>
+      </div> 
+      `
+    })
+    export class MyFieldComponent extends FieldComponent {
 
-    constructor(
-      @SkipSelf() formComponent: FormComponent,
-      @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent,
-      fx: FieldsService) {
-      super(formComponent, fieldGroupComponent, fx);
+      constructor(
+        @SkipSelf() formComponent: FormComponent,
+        @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent,
+        fx: FieldsService) {
+        super(formComponent, fieldGroupComponent, fx);
+      }
+
     }
-
-  }
  
 ## Using Custom component
 
-  <rml-form #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
-        
-    <!-- Using custom component -->
-    <app-custom-field type="text" key="firstName"  ></app-custom-field>
-      
-  </rml-form> 
+    <rml-form #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
+
+      <!-- Using custom component -->
+      <app-custom-field type="text" key="firstName"  ></app-custom-field>
+
+    </rml-form> 
