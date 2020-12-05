@@ -1,0 +1,9 @@
+<div class="{{groupClass}}" [formGroup]="form" *ngIf="visible">
+  <label [ngClass]="{'required': required }" [attr.for]="guid">{{label || key}}</label>
+
+  <input class="{{inputClass}}"   [formControlName]="key"
+    [ngClass]="{'is-invalid': error }" [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null"
+    (blur)="blur()" [id]="guid" type="text" placeholder="{{placeHolder || label}}">
+
+  <span class="invalid-feedback {{error ? 'd-block': '' }}">{{error}}</span>
+</div>

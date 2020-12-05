@@ -2,45 +2,51 @@
 
     @Component({
       template: `
-      <rml-form #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
+        <rml-form #appFrom (submitForm)="onSubmit($event)" class="container" [query="query$">
 
-        <!--  Standard form input types -->
-        <rml-field type="text" key="id" disabled="true"></rml-field>
-        <rml-field type="textarea" key="notes" label="Notes" required></rml-field> 
+          <!--  Standard form input types -->
+          <rml-field type="text" key="id" disabled="true"></rml-field>
+          <rml-field type="textarea" key="notes" label="Notes" required></rml-field>
 
-        <!--  Create Custom field template -->
-        <app-field type="select" key="brave" [options]="ratingOptions" ></app-field>	  
+          <!--  Create Custom field template -->
+          <app-custom-field type="select" key="firstName" ></app-custom-field>
 
-        <!--  Group validation -->
-        <rml-field-group key="pax" [validator]="paxValidator">
-          <rml-field type="email" key="emailAddress" required></rml-field>
-          <rml-field type="email" key="emailAddressConfirm" required></rml-field>
-        </rml-field-group>  
+          <!--  Group validation -->
+          <rml-field-group key="pax" [validator]="paxValidator">
+            <rml-field type="email" key="emailAddress" required></rml-field>
+            <rml-field type="email" key="emailAddressConfirm" required></rml-field>
+          </rml-field-group>
 
-        <!--  Show/Hide visiblity of fields -->
-        <rml-field type="select" key="ratings" [options]="ratingOptions" required  [visible]="showRating" ></rml-field>
-        <rml-field type="checkbox" key="showRatings" (valueChanges)="showRatingsChange($event)" ></rml-field>
+          <!--  Show/Hide visiblity of fields -->
+          <rml-field type="select" key="brave" [options]="braveOptions" required  [visible]="showBrave" ></rml-field>
+          <rml-field type="checkbox" key="showBrave" (valueChanges)="showBraveChange($event)" ></rml-field>
 
-        <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div> 
+          <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div>
 
-        <div class="form-row">
-          <button type="submit" class="btn btn-primary {{appFrom.valid  ? '': 'is-invalid'}}"
-            (click)="appFrom.submit()">Save</button>
-        </div> 
+          <div class="form-row">
+            <button type="submit" class="btn btn-primary {{appFrom.valid  ? '': 'is-invalid'}}"
+              (click)="appFrom.submit()">Save</button>
+          </div>
 
-      </rml-form> 
+        </rml-form>
       `,
     })
     export class StudentComponent implements OnInit {
 
       query$: Observable<any>;
       paxValidator: ValidatorOption;
+      showBrave = true;
+      braveOptions = [];
 
-      constructor(private qx: MyQueryService) {
+      constructor() {
 
-        // Get Data from server: Set Query as observable<any> 
-        // this.query$ = this.qx.getStudent().pipe(
-        // map((result) => result?.data?.students[0]));
+        // this.query$ = this.qx.call(queryStr).pipe(
+        //   map((result) => result?.data?.students[0]));
+        this.braveOptions = [
+          { key: 'solid', value: 'Solid' },
+          { key: 'great', value: 'Great' },
+          { key: 'good', value: 'Good' },
+          { key: 'unproven', value: 'Unproven' }];
 
       }
 
@@ -58,20 +64,23 @@
           error: ' Emails to not match.'
         };
 
-      }
+      } 
+
 
       onSubmit(value) {
-
+        // if (this.validate()) {
+        //   this.payLoad = JSON.stringify(this.form.getRawValue());
+        // }
       }
 
-      showRatingsChange(value) {
-        this.showRating = !this.showRating;
-      } 
+      showBraveChange(value) {
+        this.showBrave = !this.showBrave;
+      }
 
     }
 
 ## Example of Custom Field Component
- 
+
     @Component({
       selector: 'app-custom-field',
       template: `
@@ -84,7 +93,7 @@
           (blur)="blur()" [id]="guid" type="text" placeholder="{{placeHolder || label}}">
 
         <span class="invalid-feedback {{error ? 'd-block': '' }}">{{error}}</span>
-      </div> 
+      </div>
       `
     })
     export class MyFieldComponent extends FieldComponent {
@@ -96,7 +105,7 @@
       }
 
     }
- 
+
 ## Using Custom component
 
     <rml-form #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
@@ -104,4 +113,4 @@
       <!-- Using custom component -->
       <app-custom-field type="text" key="firstName"  ></app-custom-field>
 
-    </rml-form> 
+    </rml-form>
