@@ -1,6 +1,6 @@
 {
   "name": "ngx-form-fields",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Adding rml-field to template will build the required reactiveforms definitions automatically. Create custom form fields.",
   "author": "Ryan Layton",
   "repository": {
