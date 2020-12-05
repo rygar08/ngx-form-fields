@@ -25,7 +25,6 @@ export abstract class FieldBaseComponent implements OnDestroy {
   readonly guid: string;
   public form: FormGroup;
   public isGroup: boolean;
-  public control: FormControl;
   public field: Field;
   public error: string;
   error$ = new Subject<string>();

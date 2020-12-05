@@ -8,8 +8,8 @@ import { FormComponent } from './form.component';
   selector: 'rml-field-group',
   template: `<div *ngIf="visible">
               <ng-content></ng-content>
-              <span class="invalid-feedback" [ngClass]="{'d-block': form.errors?.emailCompare}">
-                Emails to not match.
+              <span class="invalid-feedback" [ngClass]="{'d-block': form.errors?.error}">
+                {{ validator?.error }}
               </span>
              </div>`
 })
@@ -30,6 +30,7 @@ export class FieldGroupComponent extends FieldBaseComponent implements OnInit, A
     this.updateField();
 
   }
+
 
   ngAfterViewInit(): void {
 

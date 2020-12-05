@@ -1,4 +1,4 @@
-# Example of using Form Feilds
+# Example of Form Feilds
 
     @Component({
       template: `
@@ -18,8 +18,8 @@
         </rml-field-group>  
 
         <!--  Show/Hide visiblity of fields -->
-        <app-field type="select" key="ratings" [options]="ratingOptions" required  [visible]="showRating" ></app-field>
-        <app-field type="checkbox" key="showRatings" (valueChanges)="showRatingsChange($event)" ></app-field>
+        <rml-field type="select" key="ratings" [options]="ratingOptions" required  [visible]="showRating" ></rml-field>
+        <rml-field type="checkbox" key="showRatings" (valueChanges)="showRatingsChange($event)" ></rml-field>
 
         <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div> 
 
@@ -36,9 +36,9 @@
       query$: Observable<any>;
       paxValidator: ValidatorOption;
 
-      constructor(private qx: QueryService) {
+      constructor(private qx: MyQueryService) {
 
-        // Set Query as observable<any> 
+        // Get Data from server: Set Query as observable<any> 
         // this.query$ = this.qx.getStudent().pipe(
         // map((result) => result?.data?.students[0]));
 
@@ -52,7 +52,7 @@
             const e1 = c.get('emailAddress').value || '';
             const e2 = c.get('emailAddressConfirm').value || '';
             if (e1 === '' || e2 === '') { return null; }
-            if (e1 !== e2) { return { emailCompare: true }; }
+            if (e1 !== e2) { return { error: true }; }
             return null;
           },
           error: ' Emails to not match.'
@@ -76,7 +76,7 @@
       selector: 'app-custom-field',
       template: `
       <div class="{{groupClass}}" [formGroup]="form" *ngIf="visible">
-        <label *ngIf="type !== 'checkbox'" [ngClass]="{'required': required }" [attr.for]="guid">{{label || key}}</label>
+        <label [ngClass]="{'required': required }" [attr.for]="guid">{{label}}</label>
 
         <!-- you could put in a switchcase for multiple field types here -->
         <input class="{{inputClass}}" [formControlName]="key"
@@ -91,9 +91,8 @@
 
       constructor(
         @SkipSelf() formComponent: FormComponent,
-        @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent,
-        fx: FieldsService) {
-        super(formComponent, fieldGroupComponent, fx);
+        @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent) {
+        super(formComponent, fieldGroupComponent);
       }
 
     }

@@ -1,6 +1,6 @@
 {
   "name": "ngx-form-fields",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Create custom form fields that generate the required angular reactive forms items in the background.",
   "author": "Ryan Layton",
   "repository": {

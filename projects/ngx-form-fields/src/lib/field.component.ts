@@ -5,7 +5,6 @@ import { debounceTime } from 'rxjs/operators';
 import { Field, ValidatorOption } from './field-base';
 import { FieldBaseComponent } from './fieldBase.component';
 import { FieldGroupComponent } from './fieldGroup.component';
-import { FieldsService } from './fields.service';
 import { FormComponent } from './form.component';
 
 @Component({
@@ -24,14 +23,14 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
   @Input() inputClass = 'form-control';
   @Input() groupClass = 'form-group row';
   @Input() type: 'text' | 'email' | 'dropdown' | 'checkbox' | 'textarea' | 'date';
-  @Input() errorDelay = 800;
   @Input() validators: ValidatorOption[] = [];
   @Input() disabled: boolean;
   @Input() readonly: boolean;
+  public control: FormControl;
 
   constructor(
     @SkipSelf() private formComponent: FormComponent,
-    @Optional() @SkipSelf() private fieldGroupComponent: FieldGroupComponent, private fx: FieldsService) {
+    @Optional() @SkipSelf() private fieldGroupComponent: FieldGroupComponent) {
     super();
   }
 
@@ -45,8 +44,8 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
 
   ngAfterViewInit(): void {
 
-    this.control.valueChanges.pipe(debounceTime(this.errorDelay)).subscribe(() => {
-      this.fx.validateField(this.field);
+    this.control.valueChanges.pipe(debounceTime(this.formComponent.errorDelay)).subscribe(() => {
+      this.formComponent.validateField(this.field);
     });
 
     this.control.valueChanges.subscribe((value) => {
@@ -92,10 +91,12 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
 
 
   blur() {
-    timer(this.errorDelay).subscribe(() => {
-      this.fx.validateField(this.field);
+    timer(this.formComponent.errorDelay).subscribe(() => {
+      this.formComponent.validateField(this.field);
     });
   }
+
+
 
 
 

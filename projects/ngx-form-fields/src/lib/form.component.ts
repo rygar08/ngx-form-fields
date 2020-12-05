@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Field } from './field-base';
-import { FieldsService } from './fields.service';
 
 
 @Component({
@@ -13,32 +12,25 @@ import { FieldsService } from './fields.service';
   </form>
   `
 })
-export class FormComponent implements AfterViewInit, OnInit {
+export class FormComponent implements AfterViewInit {
 
   @Output() submitForm = new EventEmitter();
-  @Input() key: string;
   @Input() validator: ValidatorFn;
-  public scrollOnValidation = true;
+  @Input() scrollOnValidation = true;
+  @Input() errorDelay = 800;
+  @Input() query: Observable<any>;
   public data: any;
   public fields: Field[] = [];
-  public errorDelay = 800;
   public form: FormGroup;
   public error: string;
-  @Input()
-  public query: Observable<any>;
 
   get valid() { return this.form?.valid; }
 
-  constructor(private fb: FormBuilder, private fx: FieldsService) {
+  constructor(private fb: FormBuilder) {
 
     this.form = this.fb.group({});
 
   }
-
-  ngOnInit() {
-
-  }
-
 
 
   ngAfterViewInit(): void {
@@ -118,7 +110,7 @@ export class FormComponent implements AfterViewInit, OnInit {
         if (field.isGroup) {
           this.processErrors(field.fields);
         } else {
-          this.fx.validateField(field, true);
+          this.validateField(field, true);
         }
       });
     }
@@ -131,6 +123,32 @@ export class FormComponent implements AfterViewInit, OnInit {
 
   removeField(field: Field) {
     this.fields = this.fields.filter(f => f.guid !== field.guid);
+  }
+
+
+  validateField(field: Field, showallError?: boolean) {
+    let error = '';
+    const c = field.control;
+    const invalid = showallError ? c.errors : (c.dirty || c.touched) && c.errors;
+    if (invalid) {
+      Object.keys(c.errors).map(errorkey => {
+        if (errorkey === 'required') {
+          error = `${field.label} is required`;
+          return;
+        }
+        if (errorkey === 'email') {
+          error = `Please enter a valid email`;
+          return;
+        }
+        if (field.validators?.length > 0) {
+          const validator = field.validators.find(t => t.key === errorkey);
+          if (validator) {
+            error = validator.error + ' ';
+          }
+        }
+      });
+    }
+    field.error$.next(error);
   }
 
 
