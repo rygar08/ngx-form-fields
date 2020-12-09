@@ -19,6 +19,10 @@
       "ngx-form-fields": [
         "dist/ngx-form-fields/ngx-form-fields",
         "dist/ngx-form-fields"
+      ],
+      "ngx-form-fields-nz": [
+        "dist/ngx-form-fields-nz/ngx-form-fields-nz",
+        "dist/ngx-form-fields-nz"
       ]
     }
   },

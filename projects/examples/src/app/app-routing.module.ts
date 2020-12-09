@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'formfields',
     loadChildren: () => import('./formfields/formFieldExample.module').then((m) => m.FormFieldsExample),
+  },
+  {
+    path: 'formfieldsnz',
+    loadChildren: () => import('./formfieldsNz/formFieldExample.module').then((m) => m.FormFieldsNzExample),
   }
 ];
 

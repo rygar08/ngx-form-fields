@@ -1,0 +1,154 @@
+<div  [formGroup]="form" *ngIf="visible">
+
+    <nz-form-label [nzSpan]="7" [attr.for]="guid" [nzRequired]="required">{{label || key}}</nz-form-label>
+    <!-- <nz-form-label [nzSpan]="isHorizontal ? 4 : null">Field B</nz-form-label> -->
+    <nz-form-control [nzSpan]="12" [nzErrorTip]="error" nzValidatingTip="Validating...">
+      <!-- [nzOffset]="7" [nzSpan]="12" -->
+      <!-- [nzDisableAutoTips]="true" -->
+      <!-- <nz-input-group nzPrefixIcon="user">
+    </nz-input-group>
+     -->
+      <input [type]="type"   [attr.readOnly]="readonly?'':null" (blur)="blur()" [id]="guid" nz-input
+        [formControlName]="key" placeholder="{{placeHolder || label}}" />
+
+    </nz-form-control>
+
+  <!-- (ngModelChange)="valueChanges.emit($event)" -->
+
+  <!-- <nz-input-group [nzSuffix]="suffixTemplate">
+      <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="input password" [(ngModel)]="password" />
+    </nz-input-group>
+    <ng-template #suffixTemplate>
+      <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+    </ng-template> -->
+
+  <!-- <nz-select
+    id="gender"
+    formControlName="gender"
+    nzPlaceHolder="Select a option and change input text above"
+    (ngModelChange)="genderChange($event)" >
+    <nz-option nzValue="male" nzLabel="male"></nz-option>
+    <nz-option nzValue="female" nzLabel="female"></nz-option>
+  </nz-select>
+
+
+<nz-radio-group formControlName="formLayout">
+  <label nz-radio-button [nzValue]="'horizontal'">Horizontal</label>
+  <label nz-radio-button [nzValue]="'vertical'">Vertical</label>
+  <label nz-radio-button [nzValue]="'inline'">Inline</label>
+</nz-radio-group>
+
+<label nz-checkbox formControlName="remember">
+  <span>Remember me</span>
+</label>
+
+ <textarea nz-input placeholder="Controlled autosize" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+
+<button nz-button nzType="primary">Register</button>
+
+<nz-date-picker formControlName="datePicker"></nz-date-picker>
+
+<nz-date-picker nzShowTime formControlName="datePickerTime"></nz-date-picker>
+
+ <nz-time-picker formControlName="timePicker"></nz-time-picker>
+
+<button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+<button nz-button (click)="resetForm($event)">Reset</button>
+
+<nz-input-number name="inputnumber-success" style="width:100%"></nz-input-number>
+
+  // pass as TemplateRef
+<ng-template #errorTpl let-control>
+    <ng-container *ngIf="control.hasError('required')">
+      Please confirm your password!
+    </ng-container>
+    <ng-container *ngIf="control.hasError('confirm')">
+      Two passwords that you enter is inconsistent!
+    </ng-container>
+  </ng-template>
+
+-- Group templates
+<nz-input-group [nzAddOnBefore]="addOnBeforeTemplate" [nzAddOnAfter]="addOnAfterTemplate">
+  <input type="text" nz-input [(ngModel)]="inputValue" />
+</nz-input-group>
+<ng-template #addOnBeforeTemplate>
+  <nz-select [ngModel]="'Http://'">
+    <nz-option nzLabel="Http://" nzValue="Http://"></nz-option>
+    <nz-option nzLabel="Https://" nzValue="Https://"></nz-option>
+  </nz-select>
+</ng-template>
+ <ng-template #addOnAfterTemplate>
+    <nz-select [ngModel]="'.com'">
+      <nz-option nzLabel=".com" nzValue=".com"></nz-option>
+      <nz-option nzLabel=".jp" nzValue=".jp"></nz-option>
+      <nz-option nzLabel=".cn" nzValue=".cn"></nz-option>
+      <nz-option nzLabel=".org" nzValue=".org"></nz-option>
+    </nz-select>
+  </ng-template>
+
+
+-- Search
+   <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input type="text" nz-input placeholder="input search text" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+
+  -- show password
+   <nz-input-group [nzSuffix]="suffixTemplate">
+      <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="input password" [(ngModel)]="password" />
+    </nz-input-group>
+    <ng-template #suffixTemplate>
+      <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+    </ng-template>
+
+   -->
+
+
+  <!-- <label *ngIf=" type !=='checkbox'" [ngClass]=" {'required': required }" [attr.for]="guid">{{label || key}}</label>
+
+
+    <ng-container [ngSwitch]="type">
+
+      <input *ngSwitchCase="'text'" class="{{inputClass}}" [formControlName]="key" [ngClass]="{'is-invalid': error }"
+        [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" (blur)="blur()" [id]="guid" type="text"
+        placeholder="{{placeHolder || label}}">
+
+      <input *ngSwitchCase="'email'" class="{{inputClass}}" [formControlName]="key" [ngClass]="{'is-invalid': error }"
+        [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" (blur)="blur()" [id]="guid" type="email"
+        placeholder="{{placeHolder || label}}">
+
+      <select *ngSwitchCase="'select'" class="{{inputClass}}" [id]="guid" [formControlName]="key"
+        [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" [ngClass]="{'is-invalid': error }"
+        (blur)="blur()">
+        <option [value]="null">{{placeHolder || 'Select ' + label }}</option>
+        <option *ngFor="let opt of options" [value]="opt.key">{{opt.value}}</option>
+      </select>
+
+      <div *ngSwitchCase="'checkbox'" class="form-check">
+        <input type="checkbox" class="form-check-input" id="{{guid}}" [formControlName]="key"
+          [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" [ngClass]="{'is-invalid': error }"
+          (blur)="blur()">
+        <label class="form-label" for="{{key}}">
+          {{label}}
+        </label>
+      </div>
+
+      <textarea *ngSwitchCase="'textarea'" rows="3" id="{{guid}}" name="notes" class="form-control"
+        [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" placeholder="{{placeHolder || label}}"
+        [formControlName]="key" (blur)="blur()" [ngClass]="{'is-invalid': error }"></textarea>
+
+      <div *ngSwitchCase="'date'" class="input-group">
+        <input id="{{guid}}" class="form-control date-readonly" placeholder="{{placeHolder || label}}" readonly
+          [attr.disabled]="disabled?'':null" [minDate]="extras?.minDate" [maxDate]="extras?.maxDate"
+          (click)="d.toggle()" [formControlName]="key" name="{{guid}}" ngbDatepicker #d="ngbDatepicker" (blur)="blur()"
+          [markDisabled]="extras?.dateFilter" [ngClass]="{'is-invalid': error }">
+        <div class="input-group-append">
+          <button class="btn btn-outline-default calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+      </div>
+    </ng-container>
+
+    <span class="invalid-feedback {{error ? 'd-block': '' }}">{{error}}</span> -->
+</div>
