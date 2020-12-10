@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Optional, Output, Renderer2, SkipSelf } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Optional, Output, Renderer2, SkipSelf, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzFormItemComponent } from 'ng-zorro-antd/form';
 import { Subject, timer } from 'rxjs';
@@ -9,40 +9,51 @@ import { FormNzComponent } from './form.component';
 
 @Component({
   selector: 'rml-nz-field',
-  styleUrls: ['./field.component.scss'],
-  templateUrl: './field.component.html'
+  template: `
+  <div [formGroup]="form" *ngIf="visible">
+    <nz-form-label [nzSpan]="labelSpan" [nzFor]="guid" [nzRequired]="required">{{label || key}}</nz-form-label>
+    <nz-form-control [nzSpan]="controlSpan" [nzOffset]="controlOffset" (ngModelChange)="valueChanges.emit($event)"
+      [nzErrorTip]="error" nzValidatingTip="Validating...">
+      <nz-input-group nzPrefix="prefix" *ngIf="prefix">
+        <input [type]="type" [attr.readOnly]="readonly?'':null" (blur)="blur()" [id]="guid" nz-input [formControlName]="key"
+          placeholder="{{placeHolder || label}}" />
+      </nz-input-group>
+
+      <input *ngIf="!prefix"  [type]="type" [attr.readOnly]="readonly?'':null" (blur)="blur()" [id]="guid" nz-input [formControlName]="key"
+        placeholder="{{placeHolder || label}}" />
+
+    </nz-form-control>
+
+  </div>
+  `
 })
 export class FieldNzComponent extends NzFormItemComponent implements OnInit, AfterViewInit {
 
   @Output() valueChanges = new EventEmitter();
-  @Input() options: { key: string, value: string }[] = [];
   @Input() placeHolder = '';
   @Input() required = false;
   @Input() extras: any = {};
   @Input() inputClass = 'form-control';
   @Input() groupClass = 'form-group row';
-  @Input() type: 'text' | 'email' | 'dropdown' | 'checkbox' | 'textarea' | 'date';
   @Input() validators: ValidatorOption[] = [];
   @Input() disabled: boolean;
   @Input() readonly: boolean;
+  @Input() type: 'text' | 'password' | 'email' = 'text';
   public control: FormControl;
-
-
   @Input() key: string;
-
+  @Input() controlOffset = 0;
+  @Input() controlSpan = 0;
+  @Input() labelSpan = 0;
+  @Input() prefix: string | TemplateRef<void>;
+  @Input() suffix: string | TemplateRef<void>;
   private labelValue = '';
   @Input()
   set label(value) { this.labelValue = value; }
   get label() { return this.labelValue || this.formComponent.camelCaseToTitleCase(this.key); }
-
-
   private isVisible = true;
   get visible(): boolean { return this.isVisible; }
   @Input()
-  set visible(value: boolean) {
-    this.isVisible = value;
-    this.updateField();
-  }
+  set visible(value: boolean) { this.isVisible = value; this.updateField(); }
 
   readonly guid: string;
   public form: FormGroup;
@@ -58,7 +69,11 @@ export class FieldNzComponent extends NzFormItemComponent implements OnInit, Aft
     super(elementRef, renderer, cdr);
 
     this.guid = this.formComponent.newId();
-    this.error$.subscribe(err => this.error = err);
+    this.error$.subscribe(err => {
+      this.error = err;
+      this.control.markAsDirty();
+      this.control.updateValueAndValidity();
+    });
   }
 
 
@@ -66,7 +81,6 @@ export class FieldNzComponent extends NzFormItemComponent implements OnInit, Aft
 
     this.initControl();
     this.updateField();
-
   }
 
   ngOnDestroy(): void {
@@ -79,9 +93,9 @@ export class FieldNzComponent extends NzFormItemComponent implements OnInit, Aft
       this.formComponent.validateField(this.field);
     });
 
-    this.control.valueChanges.subscribe((value) => {
-      this.valueChanges.emit(value);
-    });
+    // this.control.valueChanges.subscribe((value) => {
+    //   this.valueChanges.emit(value);
+    // });
   }
 
   private initControl() {

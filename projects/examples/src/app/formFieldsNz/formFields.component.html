@@ -2,7 +2,8 @@
 
   <!--  Standard form input types -->
   <!-- <rml-nz-field type="text" key="id" disabled="true"></rml-nz-field> -->
-  <rml-nz-field key="notes" label="Notes" required></rml-nz-field>
+  <rml-nz-field type='text' key="notes" label="Notes" required></rml-nz-field>
+  <!-- <rml-nz-field key="firstname" required disabled="true"></rml-nz-field> -->
 
   <!--  Group validation -->
   <!-- <rml-nz-field-group key="pax" [validator]="paxValidator">
@@ -10,9 +11,12 @@
     <rml-nz-field type="email" key="emailAddressConfirm" required></rml-nz-field>
   </rml-nz-field-group> -->
 
+
+
+
   <!--  Show/Hide visiblity of fields -->
-  <!-- <rml-nz-field type="select" key="brave" [options]="braveOptions" required  [visible]="showBrave" ></rml-nz-field>
-  <rml-nz-field type="checkbox" key="showBrave" (valueChanges)="showBraveChange($event)" ></rml-nz-field> -->
+  <rml-nz-field-select key="brave" [options]="braveOptions" required [visible]="showBrave"></rml-nz-field-select>
+  <rml-nz-field-checkbox key="showBrave" (valueChanges)="showBraveChange($event)"></rml-nz-field-checkbox>
 
   <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div>
 
