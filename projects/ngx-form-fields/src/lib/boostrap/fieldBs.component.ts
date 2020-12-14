@@ -2,7 +2,7 @@ import { Component, Input, Optional, SkipSelf } from '@angular/core';
 import { FieldComponent, FieldGroupComponent, FormComponent } from '../base';
 
 @Component({
-  selector: 'rml-bs-field',
+  selector: 'x-bs-field',
   styleUrls: ['./field.component.scss'],
   templateUrl: './field.component.html'
 })

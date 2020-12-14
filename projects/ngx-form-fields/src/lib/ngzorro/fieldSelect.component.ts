@@ -3,7 +3,7 @@ import { FieldGroupComponent, FormComponent } from '../base';
 import { FieldNzBaseComponent } from './fieldNzBase.component';
 
 @Component({
-  selector: 'rml-nz-field-select',
+  selector: 'x-nz-field-select',
   template: `
 
   <div [formGroup]="form" *ngIf="visible">

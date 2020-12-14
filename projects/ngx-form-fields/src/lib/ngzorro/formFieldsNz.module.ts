@@ -20,7 +20,7 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
 
 const declarations = [ FieldNzInputComponent, FieldNzBaseComponent, FieldNzSelectComponent, FieldNzCheckboxComponent
 ];
-const modules = [FormsModule, CommonModule, ReactiveFormsModule, FormFieldsModule,  FormFieldsModule,  NzFormModule, NzButtonModule, NzIconModule,
+const modules = [FormsModule, CommonModule, ReactiveFormsModule,  FormFieldsModule,  NzFormModule, NzButtonModule, NzIconModule,
   NzSelectModule, NzInputModule, NzRadioModule, NzDatePickerModule, NzTimePickerModule, NzInputNumberModule, NzCheckboxModule];
 
 @NgModule({

@@ -26,15 +26,19 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
     @Optional() @SkipSelf() private fieldGroupComponent: FieldGroupComponent) {
     super();
 
+
+  }
+
+
+  ngOnInit(): void {
+
+    this.label = this.label || this.camelCaseToTitleCase(this.key);
+
     this.error$.subscribe(err => {
       this.error = err;
       this.control.markAsDirty();
       this.control.updateValueAndValidity();
     });
-  }
-
-
-  ngOnInit(): void {
 
     this.initControl();
     this.updateField();
@@ -47,9 +51,9 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
       this.formComponent.validateField(this.field);
     });
 
-    this.control.valueChanges.subscribe((value) => {
-      this.valueChanges.emit(value);
-    });
+    // this.control.valueChanges.subscribe((value) => {
+    //   this.valueChanges.emit(value);
+    // });
   }
 
   private initControl() {

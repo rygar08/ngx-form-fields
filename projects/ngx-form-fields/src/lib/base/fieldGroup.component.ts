@@ -5,7 +5,7 @@ import { FieldBaseComponent } from './fieldBase.component';
 import { FormComponent } from './form.component';
 
 @Component({
-  selector: 'rml-field-group',
+  selector: 'x-field-group',
   template: `<div *ngIf="visible">
               <ng-content></ng-content>
               <span class="invalid-feedback" [ngClass]="{'d-block': form.errors?.error}">

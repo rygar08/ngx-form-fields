@@ -5,7 +5,7 @@ import { Field } from './field-base';
 
 
 @Component({
-  selector: 'rml-form',
+  selector: 'x-form',
   template: `
   <form (submit)="submit()" [formGroup]="form">
     <ng-content></ng-content>

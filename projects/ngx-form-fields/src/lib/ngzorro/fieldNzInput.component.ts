@@ -3,7 +3,7 @@ import { FieldGroupComponent, FormComponent } from '../base';
 import { FieldNzBaseComponent } from './fieldNzBase.component';
 
 @Component({
-  selector: 'rml-nz-field-input',
+  selector: 'x-nz-field',
   template: `
   <div [formGroup]="form" *ngIf="visible">
     <nz-form-item>
@@ -22,6 +22,7 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
   `
 })
 export class FieldNzInputComponent extends FieldNzBaseComponent implements OnInit, AfterViewInit {
+
 
   constructor(
     @SkipSelf() formComponent: FormComponent,

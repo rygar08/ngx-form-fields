@@ -2,24 +2,24 @@
 
     @Component({
       template: `
-        <rml-form #appFrom (submitForm)="onSubmit($event)" class="container" [query="query$">
+        <x-form #appFrom (submitForm)="onSubmit($event)" class="container" [query="query$">
 
           <!--  Standard form input types -->
-          <rml-field type="text" key="id" disabled="true"></rml-field>
-          <rml-field type="textarea" key="notes" label="Notes" required></rml-field>
+          <x-field type="text" key="id" disabled="true"></x-field>
+          <x-field type="textarea" key="notes" label="Notes" required></x-field>
 
           <!--  Create Custom field template -->
           <app-custom-field type="select" key="firstName" ></app-custom-field>
 
           <!--  Group validation -->
-          <rml-field-group key="pax" [validator]="paxValidator">
-            <rml-field type="email" key="emailAddress" required></rml-field>
-            <rml-field type="email" key="emailAddressConfirm" required></rml-field>
-          </rml-field-group>
+          <x-field-group key="pax" [validator]="paxValidator">
+            <x-field type="email" key="emailAddress" required></x-field>
+            <x-field type="email" key="emailAddressConfirm" required></x-field>
+          </x-field-group>
 
           <!--  Show/Hide visiblity of fields -->
-          <rml-field type="select" key="brave" [options]="braveOptions" required  [visible]="showBrave" ></rml-field>
-          <rml-field type="checkbox" key="showBrave" (valueChanges)="showBraveChange($event)" ></rml-field>
+          <x-field type="select" key="brave" [options]="braveOptions" required  [visible]="showBrave" ></x-field>
+          <x-field type="checkbox" key="showBrave" (valueChanges)="showBraveChange($event)" ></x-field>
 
           <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div>
 
@@ -28,7 +28,7 @@
               (click)="appFrom.submit()">Save</button>
           </div>
 
-        </rml-form>
+        </x-form>
       `,
     })
     export class StudentComponent implements OnInit {
@@ -108,9 +108,9 @@
 
 ## Using Custom component
 
-    <rml-form #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
+    <x-form #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
 
       <!-- Using custom component -->
       <app-custom-field type="text" key="firstName"  ></app-custom-field>
 
-    </rml-form>
+    </x-form>

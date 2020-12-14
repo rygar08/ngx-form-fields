@@ -5,13 +5,13 @@
 
     <input *ngSwitchCase="'text'" class="{{inputClass}}" [formControlName]="key" [ngClass]="{'is-invalid': error }"
       [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" (blur)="blur()" [id]="guid" type="text"
-      placeholder="{{placeHolder || label}}">
+      placeholder="{{placeHolder || label}}"  (ngModelChange)="valueChanges.emit($event)">
 
     <input *ngSwitchCase="'email'" class="{{inputClass}}" [formControlName]="key" [ngClass]="{'is-invalid': error }"
       [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" (blur)="blur()" [id]="guid" type="email"
-      placeholder="{{placeHolder || label}}">
+      placeholder="{{placeHolder || label}}"  (ngModelChange)="valueChanges.emit($event)">
 
-    <select *ngSwitchCase="'select'" class="{{inputClass}}" [id]="guid" [formControlName]="key"
+    <select *ngSwitchCase="'select'" class="{{inputClass}}" [id]="guid" [formControlName]="key"  (ngModelChange)="valueChanges.emit($event)"
       [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" [ngClass]="{'is-invalid': error }"
       (blur)="blur()">
       <option [value]="null">{{placeHolder || 'Select ' + label }}</option>
@@ -19,7 +19,7 @@
     </select>
 
     <div *ngSwitchCase="'checkbox'" class="form-check">
-      <input type="checkbox" class="form-check-input" id="{{guid}}" [formControlName]="key"
+      <input type="checkbox" class="form-check-input" id="{{guid}}" [formControlName]="key"  (ngModelChange)="valueChanges.emit($event)"
         [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" [ngClass]="{'is-invalid': error }"
         (blur)="blur()">
       <label class="form-label" for="{{key}}">
@@ -27,12 +27,12 @@
       </label>
     </div>
 
-    <textarea *ngSwitchCase="'textarea'" rows="3" id="{{guid}}" name="notes" class="form-control"
+    <textarea *ngSwitchCase="'textarea'" rows="3" id="{{guid}}" name="notes" class="form-control"  (ngModelChange)="valueChanges.emit($event)"
       [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" placeholder="{{placeHolder || label}}"
       [formControlName]="key" (blur)="blur()" [ngClass]="{'is-invalid': error }"></textarea>
 
     <div *ngSwitchCase="'date'" class="input-group">
-      <input id="{{guid}}" class="form-control date-readonly" placeholder="{{placeHolder || label}}" readonly
+      <input id="{{guid}}" class="form-control date-readonly" placeholder="{{placeHolder || label}}" readonly  (ngModelChange)="valueChanges.emit($event)"
         [attr.disabled]="disabled?'':null" [minDate]="extras?.minDate" [maxDate]="extras?.maxDate" (click)="d.toggle()"
         [formControlName]="key" name="{{guid}}" ngbDatepicker #d="ngbDatepicker" (blur)="blur()"
         [markDisabled]="extras?.dateFilter" [ngClass]="{'is-invalid': error }">

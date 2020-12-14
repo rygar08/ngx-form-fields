@@ -11,7 +11,7 @@ export abstract class FieldBaseComponent implements OnDestroy {
   private labelValue = '';
   @Input()
   set label(value) { this.labelValue = value; }
-  get label() { return this.labelValue || this.camelCaseToTitleCase(this.key); }
+  get label() { return this.labelValue; }
 
 
   private isVisible = true;
