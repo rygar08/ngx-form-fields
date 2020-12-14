@@ -22,6 +22,10 @@ export class FieldGroupComponent extends FieldBaseComponent implements OnInit, A
     @SkipSelf() private formComponent: FormComponent,
     @Optional() @SkipSelf() private fieldGroupComponent: FieldGroupComponent, public fb: FormBuilder) {
     super();
+
+    this.error$.subscribe(err => {
+      this.error = err;
+    });
   }
 
   ngOnInit(): void {

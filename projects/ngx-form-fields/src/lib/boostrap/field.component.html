@@ -1,8 +1,6 @@
 <div class="{{groupClass}}" [formGroup]="form" *ngIf="visible">
   <label *ngIf="type !== 'checkbox'" [ngClass]="{'required': required }" [attr.for]="guid">{{label || key}}</label>
 
-
-
   <ng-container [ngSwitch]="type">
 
     <input *ngSwitchCase="'text'" class="{{inputClass}}" [formControlName]="key" [ngClass]="{'is-invalid': error }"

@@ -162,46 +162,6 @@
           }
         }
       }
-    },
-    "ngx-form-fields-nz": {
-      "projectType": "library",
-      "root": "projects/ngx-form-fields-nz",
-      "sourceRoot": "projects/ngx-form-fields-nz/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/ngx-form-fields-nz/tsconfig.lib.json",
-            "project": "projects/ngx-form-fields-nz/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngx-form-fields-nz/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-form-fields-nz/src/test.ts",
-            "tsConfig": "projects/ngx-form-fields-nz/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-form-fields-nz/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-form-fields-nz/tsconfig.lib.json",
-              "projects/ngx-form-fields-nz/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
   "defaultProject": "examples"

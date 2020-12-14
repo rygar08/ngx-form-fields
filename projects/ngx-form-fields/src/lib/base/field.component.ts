@@ -7,22 +7,15 @@ import { FieldBaseComponent } from './fieldBase.component';
 import { FieldGroupComponent } from './fieldGroup.component';
 import { FormComponent } from './form.component';
 
-@Component({
-  selector: 'rml-field',
-  styleUrls: ['./field.component.scss'],
-  templateUrl: './field.component.html'
-})
+@Component({ template: `` })
 export class FieldComponent extends FieldBaseComponent implements OnInit, AfterViewInit {
-
 
   @Output() valueChanges = new EventEmitter();
   @Input() options: { key: string, value: string }[] = [];
   @Input() placeHolder = '';
   @Input() required = false;
   @Input() extras: any = {};
-  @Input() inputClass = 'form-control';
-  @Input() groupClass = 'form-group row';
-  @Input() type: 'text' | 'email' | 'dropdown' | 'checkbox' | 'textarea' | 'date';
+  @Input() type: 'text' | 'email' | 'password' | 'checkbox' = 'text' ;
   @Input() validators: ValidatorOption[] = [];
   @Input() disabled: boolean;
   @Input() readonly: boolean;
@@ -32,6 +25,12 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
     @SkipSelf() private formComponent: FormComponent,
     @Optional() @SkipSelf() private fieldGroupComponent: FieldGroupComponent) {
     super();
+
+    this.error$.subscribe(err => {
+      this.error = err;
+      this.control.markAsDirty();
+      this.control.updateValueAndValidity();
+    });
   }
 
 

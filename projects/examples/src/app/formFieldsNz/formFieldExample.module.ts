@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormFieldsNzModule } from 'ngx-form-fields-nz';
+import { FormFieldsNzModule } from 'ngx-form-fields';
 import { SharedModule } from '../shared/shared.module';
 import { FormFieldsNzExampleComponent } from './formFields.component';
 

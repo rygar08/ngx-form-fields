@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './formFields.component.html',
+  styleUrls: ['./formFieldExample.component.scss']
 })
 export class FormFieldsNzExampleComponent implements OnInit {
 

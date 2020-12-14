@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {  FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { Field } from './field-base';
 
@@ -32,7 +32,6 @@ export abstract class FieldBaseComponent implements OnDestroy {
   constructor() {
 
     this.guid = this.newId();
-    this.error$.subscribe(err => this.error = err);
   }
 
   ngOnDestroy(): void {

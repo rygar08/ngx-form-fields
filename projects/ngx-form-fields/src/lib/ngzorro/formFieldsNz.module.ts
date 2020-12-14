@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FieldNzComponent } from './field.component';
-import { FormNzComponent } from './form.component';
-import { FieldGroupNzComponent } from './fieldGroup.component';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -15,28 +12,21 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { FieldNzSelectComponent } from './controls/fieldSelect.component';
-import { FieldNzCheckboxComponent } from './controls/fieldCheckbox.component';
+import { FieldNzCheckboxComponent } from './fieldCheckbox.component';
+import { FormFieldsModule } from '../base';
+import { FieldNzInputComponent } from './fieldNzInput.component';
+import { FieldNzSelectComponent } from './fieldSelect.component';
+import { FieldNzBaseComponent } from './fieldNzBase.component';
 
-const declarations = [FieldNzComponent, FormNzComponent,
-  FieldGroupNzComponent,   FieldNzSelectComponent, FieldNzCheckboxComponent
+const declarations = [ FieldNzInputComponent, FieldNzBaseComponent, FieldNzSelectComponent, FieldNzCheckboxComponent
 ];
-const modules = [FormsModule, CommonModule, ReactiveFormsModule, NzFormModule,
-  NzButtonModule,
-  NzIconModule,
-  NzSelectModule,
-  NzInputModule,
-  NzRadioModule,
-  NzDatePickerModule,
-  NzTimePickerModule,
-  NzInputNumberModule,
-  NzCheckboxModule];
+const modules = [FormsModule, CommonModule, ReactiveFormsModule, FormFieldsModule,  FormFieldsModule,  NzFormModule, NzButtonModule, NzIconModule,
+  NzSelectModule, NzInputModule, NzRadioModule, NzDatePickerModule, NzTimePickerModule, NzInputNumberModule, NzCheckboxModule];
 
 @NgModule({
   imports: [modules],
   declarations: [declarations],
   exports: [modules, declarations],
-  // providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }]
 
 })
 export class FormFieldsNzModule {

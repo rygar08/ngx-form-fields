@@ -1,6 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { FormGroup, ValidationErrors } from '@angular/forms';
-import { ValidatorOption } from 'dist/ngx-form-fields/lib/field-base';
+import { ValidatorOption } from 'ngx-form-fields';
 import { Observable } from 'rxjs';
 
 @Component({
