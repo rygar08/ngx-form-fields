@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FieldComponent } from './field.component';
-import { FormComponent } from './form.component';
-import { FieldBaseComponent } from './fieldBase.component';
-import { FieldGroupComponent } from './fieldGroup.component';
+import { FieldxComponent } from './fieldx.component';
+import { FieldxFormComponent as FieldxFormComponent } from './fieldxForm.component';
+import { FieldBaseComponent as FieldxBaseComponent } from './fieldxBase.component';
+import { FieldxGroupComponent as FieldxGroupComponent } from './fieldxGroup.component';
 
-const declarations = [FieldComponent, FieldBaseComponent, FormComponent, FieldGroupComponent];
+const declarations = [FieldxComponent, FieldxBaseComponent, FieldxFormComponent, FieldxGroupComponent];
 const modules = [FormsModule, CommonModule, ReactiveFormsModule];
 
 @NgModule({

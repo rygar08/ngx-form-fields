@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Optional, Output, SkipSelf } from '@angular/core';
-import { FieldGroupComponent, FormComponent } from 'fieldx';
+import { FieldxGroupComponent, FieldxFormComponent } from 'fieldx';
 import { FieldNzBaseComponent } from './fieldNzBase.component';
 // import getISOWeek from 'date-fns/getISOWeek';
 import { en_US, NzI18nService  } from 'ng-zorro-antd/i18n';
@@ -35,8 +35,8 @@ export class FieldNzDateComponent extends FieldNzBaseComponent {
 
   constructor(
     private i18n: NzI18nService,
-    @SkipSelf() formComponent: FormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent) {
+    @SkipSelf() formComponent: FieldxFormComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
     super(formComponent, fieldGroupComponent);
     // registerLocaleData(en);
      this.i18n.setLocale(en_US);

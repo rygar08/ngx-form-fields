@@ -1,5 +1,5 @@
 import { Component, OnInit, Optional, SkipSelf } from '@angular/core';
-import { FieldGroupComponent, FormComponent } from 'fieldx';
+import { FieldxFormComponent, FieldxGroupComponent } from 'fieldx';
 import { FieldNzBaseComponent } from './fieldNzBase.component';
 
 @Component({
@@ -20,8 +20,8 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
 export class FieldNzCheckboxComponent extends FieldNzBaseComponent implements OnInit {
 
   constructor(
-    @SkipSelf() formComponent: FormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent ) {
+    @SkipSelf() formComponent: FieldxFormComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
     super(formComponent, fieldGroupComponent );
 
   }

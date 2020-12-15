@@ -1,5 +1,5 @@
 import { Component, Optional, SkipSelf } from '@angular/core';
-import { FieldGroupComponent, FormComponent } from 'fieldx';
+import { FieldxFormComponent, FieldxGroupComponent } from 'fieldx';
 import { FieldNzBaseComponent } from './fieldNzBase.component';
 
 @Component({
@@ -15,13 +15,13 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
   </div>
   `
 })
-export class FieldNzCheckListComponent extends FieldNzBaseComponent   {
+export class FieldNzCheckListComponent extends FieldNzBaseComponent {
 
 
 
   constructor(
-    @SkipSelf() formComponent: FormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent) {
+    @SkipSelf() formComponent: FieldxFormComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
     super(formComponent, fieldGroupComponent);
 
   }

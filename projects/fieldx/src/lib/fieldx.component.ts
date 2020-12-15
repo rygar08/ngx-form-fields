@@ -3,12 +3,12 @@ import { FormArray, FormControl, Validators } from '@angular/forms';
 import { timer } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Field, ValidatorOption } from './field-base';
-import { FieldBaseComponent } from './fieldBase.component';
-import { FieldGroupComponent } from './fieldGroup.component';
-import { FormComponent } from './form.component';
+import { FieldBaseComponent as FieldxBaseComponent } from './fieldxBase.component';
+import { FieldxGroupComponent } from './fieldxGroup.component';
+import { FieldxFormComponent } from './fieldxForm.component';
 
 @Component({ template: `` })
-export class FieldComponent extends FieldBaseComponent implements OnInit, AfterViewInit {
+export class FieldxComponent extends FieldxBaseComponent implements OnInit, AfterViewInit {
 
   @Output() valueChanges = new EventEmitter();
   @Input() options: { key: string, value: string }[] = [];
@@ -27,8 +27,8 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
 
 
   constructor(
-    @SkipSelf() private formComponent: FormComponent,
-    @Optional() @SkipSelf() private fieldGroupComponent: FieldGroupComponent) {
+    @SkipSelf() private formComponent: FieldxFormComponent,
+    @Optional() @SkipSelf() private fieldGroupComponent: FieldxGroupComponent) {
     super();
   }
 

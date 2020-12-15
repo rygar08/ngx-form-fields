@@ -1,6 +1,6 @@
 import { Component,  Optional, SkipSelf } from '@angular/core';
 import { FieldBsComponent } from '.';
-import { FieldGroupComponent, FormComponent } from 'fieldx';
+import { FieldxFormComponent, FieldxGroupComponent } from 'fieldx';
 
 @Component({
   selector: 'fieldx-radio-list',
@@ -23,8 +23,8 @@ export class FieldBsRadioListComponent extends FieldBsComponent {
 
 
   constructor(
-    @SkipSelf() formComponent: FormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent) {
+    @SkipSelf() formComponent: FieldxFormComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
     super(formComponent, fieldGroupComponent);
     // this.isFormArray = true;
   }

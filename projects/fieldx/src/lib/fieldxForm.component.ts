@@ -12,7 +12,7 @@ import { Field } from './field-base';
   </form>
   `
 })
-export class FormComponent implements AfterViewInit {
+export class FieldxFormComponent implements AfterViewInit {
 
   @Output() submitForm = new EventEmitter();
   @Input() validator: ValidatorFn;

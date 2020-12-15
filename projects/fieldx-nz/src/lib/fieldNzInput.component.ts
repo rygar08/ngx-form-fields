@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit, Optional, SkipSelf, TemplateRef } from '@angular/core';
-import { FieldGroupComponent, FormComponent } from 'fieldx';
+import { FieldxFormComponent, FieldxGroupComponent } from 'fieldx';
 import { FieldNzBaseComponent } from './fieldNzBase.component';
 
 @Component({
@@ -35,8 +35,8 @@ export class FieldNzInputComponent extends FieldNzBaseComponent implements OnIni
   @Input() suffix?: string | TemplateRef<void>;
 
   constructor(
-    @SkipSelf() formComponent: FormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent) {
+    @SkipSelf() formComponent: FieldxFormComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
     super(formComponent, fieldGroupComponent);
   }
 

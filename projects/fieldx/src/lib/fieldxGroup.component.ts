@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, Input, OnInit, Optional, SkipSelf } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Field, ValidatorOption } from './field-base';
-import { FieldBaseComponent } from './fieldBase.component';
-import { FormComponent } from './form.component';
+import { FieldBaseComponent as FieldxBaseComponent } from './fieldxBase.component';
+import { FieldxFormComponent } from './fieldxForm.component';
 
 @Component({
   selector: 'fieldx-group',
@@ -13,14 +13,14 @@ import { FormComponent } from './form.component';
               </span>
              </div>`
 })
-export class FieldGroupComponent extends FieldBaseComponent implements OnInit, AfterViewInit {
+export class FieldxGroupComponent extends FieldxBaseComponent implements OnInit, AfterViewInit {
 
   @Input() validator: ValidatorOption;
   public fields: Field[] = [];
 
   constructor(
-    @SkipSelf() private formComponent: FormComponent,
-    @Optional() @SkipSelf() private fieldGroupComponent: FieldGroupComponent, public fb: FormBuilder) {
+    @SkipSelf() private formComponent: FieldxFormComponent,
+    @Optional() @SkipSelf() private fieldGroupComponent: FieldxGroupComponent, public fb: FormBuilder) {
     super();
 
     this.error$.subscribe(err => {
