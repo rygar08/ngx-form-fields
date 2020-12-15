@@ -8,6 +8,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { FieldxNzFormComponent } from './fieldxNzForm.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 const routes: Routes = [
@@ -28,6 +30,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [FieldxNzLayoutComponent, FieldxNzFormComponent],
-  imports: [SharedModule, RouterModule.forChild(routes), FieldxNzModule,NzIconModule, HttpClientModule, NzTabsModule, NzLayoutModule]
+  imports: [SharedModule, RouterModule.forChild(routes), FieldxNzModule,NzIconModule,NzDrawerModule,NzModalModule, HttpClientModule, NzTabsModule, NzLayoutModule]
 })
 export class FieldxNzExample { }
