@@ -2,13 +2,32 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FieldxNzModule } from 'fieldx-nz';
 import { SharedModule } from '../shared/shared.module';
-import { FormFieldsNzExampleComponent } from './fieldxNz.component';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { FieldxNzLayoutComponent } from './fieldxNzLayout.component';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { FieldxNzFormComponent } from './fieldxNzForm.component';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { HttpClientModule } from '@angular/common/http';
 
-const routes: Routes = [{ path: '', component: FormFieldsNzExampleComponent }];
+
+const routes: Routes = [
+  {
+    path: '',
+    component: FieldxNzLayoutComponent,
+    children: [
+      // Booking Items
+      { path: '', redirectTo: 'form', pathMatch: 'full' },
+      {
+        path: 'form',
+        component: FieldxNzFormComponent
+      }
+    ]
+  }
+];
+
 
 @NgModule({
-  declarations: [FormFieldsNzExampleComponent],
-  imports: [SharedModule, RouterModule.forChild(routes), FieldxNzModule, NzTabsModule],
+  declarations: [FieldxNzLayoutComponent, FieldxNzFormComponent],
+  imports: [SharedModule, RouterModule.forChild(routes), FieldxNzModule,NzIconModule, HttpClientModule, NzTabsModule, NzLayoutModule]
 })
 export class FieldxNzExample { }

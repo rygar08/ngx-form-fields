@@ -3,9 +3,9 @@ import { FormGroup, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
-  templateUrl: './fieldxNz.component.html'
+  templateUrl: './fieldxNzForm.component.html'
 })
-export class FormFieldsNzExampleComponent implements OnInit {
+export class FieldxNzFormComponent implements OnInit {
 
   query$: Observable<any>;
   paxValidator: any;
