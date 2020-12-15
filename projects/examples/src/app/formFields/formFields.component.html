@@ -17,8 +17,8 @@
   </x-field-group>
 
   <!--  Show/Hide visiblity of fields -->
- <!-- <x-bs-field type="select" key="brave" [options]="braveOptions" ></x-bs-field> -->
-   <!-- <x-bs-field type="checkbox" key="showBrave" (valueChanges)="showBraveChange($event)" ></x-bs-field> -->
+  <x-bs-field type="select" key="brave" [options]="braveOptions" ></x-bs-field>
+  <x-bs-field type="checkbox" key="showBrave" (valueChanges)="showBraveChange($event)" ></x-bs-field>
 
   <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div>
 

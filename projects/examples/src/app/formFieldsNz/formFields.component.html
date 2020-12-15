@@ -1,28 +1,34 @@
 <x-form nz-form nzLayout="vertical" #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
 
-  <!--  Standard form input types -->
-  <x-nz-field  key="id"  ></x-nz-field>
-  <x-nz-field type='text' key="notes" label="Notes" required></x-nz-field>
+  <x-nz-field key="id"></x-nz-field>
+  <x-nz-field type='text' [prefix]="prefixTemplate" key="notes" label="Notes" required></x-nz-field>
+  <x-nz-field type='textarea' key="moreNotes" label="More Notes" required></x-nz-field>
   <x-nz-field key="firstname" required disabled="true"></x-nz-field>
 
-  <!--  Group validation -->
+  <x-nz-field-date key="dob"  required disabled="true" futureDatesOnly="true"></x-nz-field-date>
+  <x-nz-field-date key="dobAndTime" [showTime]="true" footer="Date of Birth and Time" required disabled="true"></x-nz-field-date>
+  <x-nz-field-time key="birthTime"  footer="Date of Birth and Time" required disabled="true"></x-nz-field-time>
+  <x-nz-field-number key="age" required  ></x-nz-field-number>
+
   <x-field-group key="pax" [validator]="paxValidator">
-    <x-nz-field type="email" key="emailAddress" required></x-nz-field>
-    <x-nz-field type="email" key="emailAddressConfirm" required></x-nz-field>
+    <x-nz-field type="email" suffix=".com" key="emailAddress" required></x-nz-field>
+    <x-nz-field type="email" suffix=".com" key="emailAddressConfirm" required></x-nz-field>
   </x-field-group>
 
-
-
-
-  <!--  Show/Hide visiblity of fields -->
-   <x-nz-field-select key="brave" [options]="braveOptions" required [visible]="showBrave"></x-nz-field-select>
+  <x-nz-field-select key="brave" [options]="braveOptions" required [visible]="showBrave"></x-nz-field-select>
   <x-nz-field-checkbox key="showBrave" (valueChanges)="showBraveChange($event)"></x-nz-field-checkbox>
 
   <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div>
 
   <div class="form-row">
-    <button type="submit" class="btn btn-primary {{appFrom.valid  ? '': 'is-invalid'}}"
+    <button type="submit"
+    nz-button nzType="primary" [disabled]="!appFrom.valid"
       (click)="appFrom.submit()">Save</button>
   </div>
+
+  <ng-template #prefixTemplate>
+    <span>Hello World</span>
+  </ng-template>
+
 
 </x-form>

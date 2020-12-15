@@ -10,8 +10,8 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
     <nz-form-item>
       <nz-form-label [nzSpan]="labelSpan" [nzFor]="guid" [nzRequired]="required">{{label || key}}</nz-form-label>
       <nz-form-control [nzSpan]="controlSpan" [nzOffset]="controlOffset" [nzErrorTip]="error" (ngModelChange)="valueChanges.emit($event)"  >
-        <nz-select
-          id="{{guid}}"
+        <nz-select  [nzDisabled]="disabled"
+          id="{{guid}}" (blur)="blur()"
           [formControlName]="key"
           [nzPlaceHolder]="placeHolder"  >
           <nz-option nzValue="{{i.key}}" nzLabel="{{i.value}}" *ngFor="let i of options"></nz-option>

@@ -8,8 +8,8 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
   <div [formGroup]="form" *ngIf="visible">
     <nz-form-item>
       <nz-form-label [nzSpan]="labelSpan" [attr.for]="guid" [nzRequired]="required">{{label || key}}</nz-form-label>
-      <nz-form-control [nzSpan]="controlSpan" [nzOffset]="controlOffset" [nzErrorTip]="error"  >
-        <label nz-checkbox [formControlName]="key" (nzCheckedChange)="valueChanges.emit($event)" >
+      <nz-form-control [nzSpan]="controlSpan" [nzOffset]="controlOffset" [nzErrorTip]="error"   >
+        <label nz-checkbox [formControlName]="key"  (nzCheckedChange)="valueChanges.emit($event)" [nzDisabled]="disabled"   >
           <span>{{ label }}</span>
         </label>
       </nz-form-control>

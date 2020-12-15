@@ -20,6 +20,7 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() isInline = false;
+  @Input() hideLabel = false;
   control: FormControl | FormArray;
   isFormArray = false;
 
@@ -36,6 +37,7 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
   ngOnInit(): void {
 
     this.label = this.label || this.camelCaseToTitleCase(this.key);
+    if (this.type === 'checkbox') { this.hideLabel = true; }
 
     this.error$.subscribe(err => {
       this.error = err;
