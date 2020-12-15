@@ -125,40 +125,122 @@
         }
       }
     },
-    "ngxFormFields": {
+    "fieldx": {
       "projectType": "library",
-      "root": "projects/ngx-form-fields",
-      "sourceRoot": "projects/ngx-form-fields/src",
-      "prefix": "rml",
+      "root": "projects/fieldx",
+      "sourceRoot": "projects/fieldx/src",
+      "prefix": "fieldx",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/ngx-form-fields/tsconfig.lib.json",
-            "project": "projects/ngx-form-fields/ng-package.json"
+            "tsConfig": "projects/fieldx/tsconfig.lib.json",
+            "project": "projects/fieldx/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-form-fields/tsconfig.lib.prod.json"
+              "tsConfig": "projects/fieldx/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-form-fields/src/test.ts",
-            "tsConfig": "projects/ngx-form-fields/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-form-fields/karma.conf.js"
+            "main": "projects/fieldx/src/test.ts",
+            "tsConfig": "projects/fieldx/tsconfig.spec.json",
+            "karmaConfig": "projects/fieldx/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-form-fields/tsconfig.lib.json",
-              "projects/ngx-form-fields/tsconfig.spec.json"
+              "projects/fieldx/tsconfig.lib.json",
+              "projects/fieldx/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "fieldx-nz": {
+      "projectType": "library",
+      "root": "projects/fieldx-nz",
+      "sourceRoot": "projects/fieldx-nz/src",
+      "prefix": "fieldx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/fieldx-nz/tsconfig.lib.json",
+            "project": "projects/fieldx-nz/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/fieldx-nz/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/fieldx-nz/src/test.ts",
+            "tsConfig": "projects/fieldx-nz/tsconfig.spec.json",
+            "karmaConfig": "projects/fieldx-nz/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/fieldx-nz/tsconfig.lib.json",
+              "projects/fieldx-nz/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "fieldx-bs": {
+      "projectType": "library",
+      "root": "projects/fieldx-bs",
+      "sourceRoot": "projects/fieldx-bs/src",
+      "prefix": "fieldx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/fieldx-bs/tsconfig.lib.json",
+            "project": "projects/fieldx-bs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/fieldx-bs/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/fieldx-bs/src/test.ts",
+            "tsConfig": "projects/fieldx-bs/tsconfig.spec.json",
+            "karmaConfig": "projects/fieldx-bs/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/fieldx-bs/tsconfig.lib.json",
+              "projects/fieldx-bs/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

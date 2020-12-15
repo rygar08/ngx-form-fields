@@ -8,12 +8,12 @@ const routes: Routes = [
     path: '', pathMatch: 'full', component: HomeComponent
   },
   {
-    path: 'formfields',
-    loadChildren: () => import('./formfields/formFieldExample.module').then((m) => m.FormFieldsExample),
+    path: 'fieldxBs',
+    loadChildren: () => import('./fieldxBs/fieldxBsExample.module').then((m) => m.FieldxBsExample),
   },
   {
-    path: 'formfieldsnz',
-    loadChildren: () => import('./formfieldsNz/formFieldExample.module').then((m) => m.FormFieldsNzExample),
+    path: 'fieldxNz',
+    loadChildren: () => import('./fieldxNz/fieldxNzExample.module').then((m) => m.FieldxNzExample),
   }
 ];
 

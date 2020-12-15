@@ -16,17 +16,17 @@
       "dom"
     ],
     "paths": {
-      "ngx-form-fields": [
-        "dist/ngx-form-fields/ngx-form-fields",
-        "dist/ngx-form-fields"
+      "fieldx": [
+        "dist/fieldx/fieldx",
+        "dist/fieldx"
       ],
-      "ngx-form-fields-nz": [
-        "dist/ngx-form-fields-nz/ngx-form-fields-nz",
-        "dist/ngx-form-fields-nz"
+      "fieldx-nz": [
+        "dist/fieldx-nz/fieldx-nz",
+        "dist/fieldx-nz"
       ],
-      "ngx-form-fields-base": [
-        "dist/ngx-form-fields-base/ngx-form-fields-base",
-        "dist/ngx-form-fields-base"
+      "fieldx-bs": [
+        "dist/fieldx-bs/fieldx-bs",
+        "dist/fieldx-bs"
       ]
     }
   },

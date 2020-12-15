@@ -1,0 +1,55 @@
+<fieldx-form nz-form nzLayout="vertical" #appForm (submitForm)="onSubmit($event)" class="container" [query]="query$">
+
+  <nz-tabset>
+    <nz-tab nzTitle="Tab 1">
+
+      <fieldx key="id"></fieldx>
+      <fieldx type='text' [prefix]="prefixTemplate" key="notes" label="Notes" required></fieldx>
+      <fieldx type='textarea' key="moreNotes" label="More Notes" required></fieldx>
+      <fieldx key="firstname" required disabled="true"></fieldx>
+
+        <fieldx-radio key="MyRadio"></fieldx-radio>
+
+      <fieldx-check-list key="checkList" [value]="checkOptionsOne" required></fieldx-check-list>
+
+      <fieldx-radio-list key="radioList" [options]="braveOptions"></fieldx-radio-list>
+    </nz-tab>
+    <nz-tab nzTitle="Tab 2">
+
+     <fieldx-date key="dob" required disabled="true" futureDatesOnly="true"></fieldx-date>
+      <fieldx-date key="dobAndTime" [showTime]="true" footer="Date of Birth and Time" required disabled="true">
+      </fieldx-date>
+      <fieldx-time key="birthTime" footer="Date of Birth and Time" required disabled="true"></fieldx-time>
+      <fieldx-number key="age" required></fieldx-number>
+
+      <fieldx-group key="pax" [validator]="paxValidator">
+        <fieldx type="email" suffix=".com" key="emailAddress" required></fieldx>
+        <fieldx type="email" suffix=".com" key="emailAddressConfirm" required></fieldx>
+      </fieldx-group>
+    </nz-tab>
+    <nz-tab nzTitle="Tab 3">
+
+
+      <fieldx-select key="brave" [options]="braveOptions" required [visible]="showBrave"></fieldx-select>
+      <fieldx-checkbox key="showBrave" (valueChanges)="showBraveChange($event)"></fieldx-checkbox>
+    </nz-tab>
+  </nz-tabset>
+
+
+
+
+  <div class="alert alert-danger" *ngIf="appForm.error">{{appForm.error}} </div>
+
+  <div class="form-row">
+    <button type="submit" nz-button nzType="primary"
+      (click)="appForm.submit()">Save</button>
+  </div>
+
+  <ng-template #prefixTemplate>
+    <span>Hello World</span>
+  </ng-template>
+
+
+  {{ appForm.form.value | json }}
+
+</fieldx-form>

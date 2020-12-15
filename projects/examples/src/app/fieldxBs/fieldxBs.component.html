@@ -1,0 +1,30 @@
+<fieldx-form #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
+
+  <fieldx-radio-list  key="options" [isInline]="true" [options]="braveOptions" ></fieldx-radio-list>
+  <fieldx-check-list  key="checklist" [isInline]="true" [options]="braveOptions" ></fieldx-check-list>
+
+  <!--  Standard form input types -->
+ <fieldx type="text" key="id" disabled="true"></fieldx>
+  <fieldx type="textarea" key="notes" label="Notes" required></fieldx>
+
+  <!--  Create Custom field template -->
+   <app-custom-field type="select" key="firstName" ></app-custom-field>
+
+  <!--  Group validation -->
+  <fieldx-group key="pax" [validator]="paxValidator">
+    <fieldx type="email" key="emailAddress" required></fieldx>
+    <fieldx type="email" key="emailAddressConfirm" required></fieldx>
+  </fieldx-group>
+
+  <!--  Show/Hide visiblity of fields -->
+  <fieldx type="select" key="brave" [options]="braveOptions" ></fieldx>
+  <fieldx type="checkbox" key="showBrave" (valueChanges)="showBraveChange($event)" ></fieldx>
+
+  <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div>
+
+  <div class="form-row">
+    <button type="submit" class="btn btn-primary {{appFrom.valid  ? '': 'is-invalid'}}"
+      (click)="appFrom.submit()">Save</button>
+  </div>
+
+</fieldx-form>
