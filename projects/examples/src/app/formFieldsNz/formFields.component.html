@@ -1,34 +1,55 @@
-<x-form nz-form nzLayout="vertical" #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
+<x-form nz-form nzLayout="vertical" #appForm (submitForm)="onSubmit($event)" class="container" [query]="query$">
 
-  <x-nz-field key="id"></x-nz-field>
-  <x-nz-field type='text' [prefix]="prefixTemplate" key="notes" label="Notes" required></x-nz-field>
-  <x-nz-field type='textarea' key="moreNotes" label="More Notes" required></x-nz-field>
-  <x-nz-field key="firstname" required disabled="true"></x-nz-field>
+  <nz-tabset>
+    <nz-tab nzTitle="Tab 1">
 
-  <x-nz-field-date key="dob"  required disabled="true" futureDatesOnly="true"></x-nz-field-date>
-  <x-nz-field-date key="dobAndTime" [showTime]="true" footer="Date of Birth and Time" required disabled="true"></x-nz-field-date>
-  <x-nz-field-time key="birthTime"  footer="Date of Birth and Time" required disabled="true"></x-nz-field-time>
-  <x-nz-field-number key="age" required  ></x-nz-field-number>
+      <x-nz-field key="id"></x-nz-field>
+      <x-nz-field type='text' [prefix]="prefixTemplate" key="notes" label="Notes" required></x-nz-field>
+      <x-nz-field type='textarea' key="moreNotes" label="More Notes" required></x-nz-field>
+      <x-nz-field key="firstname" required disabled="true"></x-nz-field>
 
-  <x-field-group key="pax" [validator]="paxValidator">
-    <x-nz-field type="email" suffix=".com" key="emailAddress" required></x-nz-field>
-    <x-nz-field type="email" suffix=".com" key="emailAddressConfirm" required></x-nz-field>
-  </x-field-group>
+      <x-nz-field-radio key="MyRadio"></x-nz-field-radio>
 
-  <x-nz-field-select key="brave" [options]="braveOptions" required [visible]="showBrave"></x-nz-field-select>
-  <x-nz-field-checkbox key="showBrave" (valueChanges)="showBraveChange($event)"></x-nz-field-checkbox>
+      <x-nz-field-check-list key="checkList" [value]="checkOptionsOne" required></x-nz-field-check-list>
 
-  <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div>
+      <x-nz-field-radio-list key="radioList" [options]="braveOptions"></x-nz-field-radio-list>
+    </nz-tab>
+    <nz-tab nzTitle="Tab 2">
+
+      <x-nz-field-date key="dob" required disabled="true" futureDatesOnly="true"></x-nz-field-date>
+      <x-nz-field-date key="dobAndTime" [showTime]="true" footer="Date of Birth and Time" required disabled="true">
+      </x-nz-field-date>
+      <x-nz-field-time key="birthTime" footer="Date of Birth and Time" required disabled="true"></x-nz-field-time>
+      <x-nz-field-number key="age" required></x-nz-field-number>
+
+      <x-field-group key="pax" [validator]="paxValidator">
+        <x-nz-field type="email" suffix=".com" key="emailAddress" required></x-nz-field>
+        <x-nz-field type="email" suffix=".com" key="emailAddressConfirm" required></x-nz-field>
+      </x-field-group>
+    </nz-tab>
+    <nz-tab nzTitle="Tab 3">
+
+
+      <x-nz-field-select key="brave" [options]="braveOptions" required [visible]="showBrave"></x-nz-field-select>
+      <x-nz-field-checkbox key="showBrave" (valueChanges)="showBraveChange($event)"></x-nz-field-checkbox>
+    </nz-tab>
+  </nz-tabset>
+
+
+
+
+  <div class="alert alert-danger" *ngIf="appForm.error">{{appForm.error}} </div>
 
   <div class="form-row">
-    <button type="submit"
-    nz-button nzType="primary" [disabled]="!appFrom.valid"
-      (click)="appFrom.submit()">Save</button>
+    <button type="submit" nz-button nzType="primary" [disabled]="!appForm.valid"
+      (click)="appForm.submit()">Save</button>
   </div>
 
   <ng-template #prefixTemplate>
     <span>Hello World</span>
   </ng-template>
 
+
+  {{ appForm.form.value | json }}
 
 </x-form>

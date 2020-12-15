@@ -13,6 +13,12 @@ export class FormFieldsNzExampleComponent implements OnInit {
   showBrave = true;
   braveOptions = [];
 
+  checkOptionsOne = [
+    { label: 'Apple', value: 'Apple', checked: true },
+    { label: 'Pear', value: 'Pear', checked: false },
+    { label: 'Orange', value: 'Orange', checked: false }
+  ];
+
   constructor() {
 
     // this.query$ = this.qx.call(queryStr).pipe(

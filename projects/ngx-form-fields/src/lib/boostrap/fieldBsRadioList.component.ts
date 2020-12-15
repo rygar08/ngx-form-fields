@@ -21,9 +21,6 @@ import { FieldGroupComponent, FormComponent } from '../base';
 })
 export class FieldBsRadioListComponent extends FieldBsComponent {
 
-  // get formArray() {
-  //   return this.control as FormArray;
-  // }
 
   constructor(
     @SkipSelf() formComponent: FormComponent,

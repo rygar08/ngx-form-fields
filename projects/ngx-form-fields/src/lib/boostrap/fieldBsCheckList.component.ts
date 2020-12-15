@@ -1,4 +1,4 @@
-import { Component, Optional, SkipSelf } from '@angular/core';
+import { Component, Input, Optional, SkipSelf } from '@angular/core';
 import { FormArray, } from '@angular/forms';
 import { FieldBsComponent } from '.';
 import { FieldGroupComponent, FormComponent } from '../base';
@@ -21,6 +21,7 @@ import { FieldGroupComponent, FormComponent } from '../base';
   `
 })
 export class FieldBsCheckListComponent extends FieldBsComponent {
+
 
   get formArray() {
     return this.control as FormArray;

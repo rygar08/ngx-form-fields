@@ -20,9 +20,13 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
 import { FieldNzDateComponent } from './fieldDate.component';
 import { FieldNzTimeComponent } from './fieldTime.component';
 import { FieldNzNumberComponent } from './fieldNumber.component';
+import { FieldNzRadioComponent } from './fieldRadio.component';
+import { FieldNzCheckListComponent } from './fieldCheckList.component';
+import { FieldNzRadioListComponent } from './fieldRadioList.component';
 
 const declarations = [ FieldNzInputComponent, FieldNzBaseComponent, FieldNzSelectComponent, FieldNzCheckboxComponent,
-  FieldNzDateComponent, FieldNzTimeComponent, FieldNzNumberComponent
+  FieldNzDateComponent, FieldNzTimeComponent, FieldNzNumberComponent, FieldNzRadioComponent, FieldNzCheckListComponent,
+  FieldNzRadioListComponent
 ];
 const modules = [FormsModule, CommonModule, ReactiveFormsModule,  FormFieldsModule,  NzFormModule, NzButtonModule, NzIconModule,
   NzSelectModule, NzInputModule, NzRadioModule, NzDatePickerModule, NzTimePickerModule, NzInputNumberModule, NzCheckboxModule];

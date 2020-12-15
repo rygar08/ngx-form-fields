@@ -1,4 +1,4 @@
-import { Component, Input, Optional, SkipSelf, TemplateRef } from '@angular/core';
+import { Component, Input, Optional, SkipSelf  } from '@angular/core';
 import { FieldComponent, FieldGroupComponent, FormComponent } from '../base';
 
 @Component({ template: `` })

@@ -5,9 +5,6 @@
 
 
 
-
-<nz-input-number name="inputnumber-success" style="width:100%"></nz-input-number>
-
   // pass as TemplateRef
 <ng-template #errorTpl let-control>
     <ng-container *ngIf="control.hasError('required')">
@@ -56,53 +53,33 @@
 
    -->
 
+<!-- autoComplete -->
+   <!-- <input nz-input [(ngModel)]="value" [nzAutocomplete]="auto">
+   <nz-autocomplete [nzDataSource]="['12345', '23456', '34567']" #auto></nz-autocomplete> -->
 
-<!-- <label *ngIf=" type !=='checkbox'" [ngClass]=" {'required': required }" [attr.for]="guid">{{label || key}}</label>
-
-
-    <ng-container [ngSwitch]="type">
-
-      <input *ngSwitchCase="'text'" class="{{inputClass}}" [formControlName]="key" [ngClass]="{'is-invalid': error }"
-        [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" (blur)="blur()" [id]="guid" type="text"
-        placeholder="{{placeHolder || label}}">
-
-      <input *ngSwitchCase="'email'" class="{{inputClass}}" [formControlName]="key" [ngClass]="{'is-invalid': error }"
-        [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" (blur)="blur()" [id]="guid" type="email"
-        placeholder="{{placeHolder || label}}">
-
-      <select *ngSwitchCase="'select'" class="{{inputClass}}" [id]="guid" [formControlName]="key"
-        [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" [ngClass]="{'is-invalid': error }"
-        (blur)="blur()">
-        <option [value]="null">{{placeHolder || 'Select ' + label }}</option>
-        <option *ngFor="let opt of options" [value]="opt.key">{{opt.value}}</option>
-      </select>
-
-      <div *ngSwitchCase="'checkbox'" class="form-check">
-        <input type="checkbox" class="form-check-input" id="{{guid}}" [formControlName]="key"
-          [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" [ngClass]="{'is-invalid': error }"
-          (blur)="blur()">
-        <label class="form-label" for="{{key}}">
-          {{label}}
-        </label>
-      </div>
-
-      <textarea *ngSwitchCase="'textarea'" rows="3" id="{{guid}}" name="notes" class="form-control"
-        [attr.readOnly]="readonly?'':null" [attr.disabled]="disabled?'':null" placeholder="{{placeHolder || label}}"
-        [formControlName]="key" (blur)="blur()" [ngClass]="{'is-invalid': error }"></textarea>
-
-      <div *ngSwitchCase="'date'" class="input-group">
-        <input id="{{guid}}" class="form-control date-readonly" placeholder="{{placeHolder || label}}" readonly
-          [attr.disabled]="disabled?'':null" [minDate]="extras?.minDate" [maxDate]="extras?.maxDate"
-          (click)="d.toggle()" [formControlName]="key" name="{{guid}}" ngbDatepicker #d="ngbDatepicker" (blur)="blur()"
-          [markDisabled]="extras?.dateFilter" [ngClass]="{'is-invalid': error }">
-        <div class="input-group-append">
-          <button class="btn btn-outline-default calendar" (click)="d.toggle()" type="button"></button>
-        </div>
-      </div>
-    </ng-container>
-
-    <span class="invalid-feedback {{error ? 'd-block': '' }}">{{error}}</span> -->
-
+<!-- 
+   <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixIconButton">
+    <input placeholder="input here" nz-input [(ngModel)]="inputValue" (input)="onChange($event)" [nzAutocomplete]="auto" />
+  </nz-input-group>
+  <ng-template #suffixIconButton>
+    <button nz-button nzType="primary" nzSize="large" nzSearch>
+      <i nz-icon nzType="search" nzTheme="outline"></i>
+    </button>
+  </ng-template>
+  <nz-autocomplete #auto>
+    <nz-auto-option class="global-search-item" *ngFor="let option of options" [nzValue]="option.category">
+      Found {{ option.value }} on
+      <a
+        class="global-search-item-desc"
+        [href]="'https://s.taobao.com/search?q=' + option.value"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ option.category }}
+      </a>
+      <span class="global-search-item-count">{{ option.count }} results</span>
+    </nz-auto-option>
+  </nz-autocomplete> -->
 
     <!-- sequencer -->
 
@@ -114,7 +91,6 @@
 <!-- html -->
 <!-- geo lookup with map -->
 <!--  format -->
-<!-- number -->
 <!-- Checkbox -->
 <!-- Radio button -->
 <!-- select with link to modal object -->
@@ -135,17 +111,4 @@
   <label class="custom-file-label" for="customFile">Choose file</label>
 </div>
 
--->
-
-<!--  input group
-
-<div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend">@</span>
-        </div>
-        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required="" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-        <div class="invalid-feedback">
-          Please choose a username.
-        </div>
-      </div>
 -->

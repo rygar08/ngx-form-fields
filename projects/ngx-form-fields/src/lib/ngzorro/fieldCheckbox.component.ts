@@ -1,4 +1,4 @@
-import { Component, Input, Optional, SkipSelf } from '@angular/core';
+import { Component, Input, OnInit, Optional, SkipSelf } from '@angular/core';
 import { FieldGroupComponent, FormComponent } from '../base';
 import { FieldNzBaseComponent } from './fieldNzBase.component';
 
@@ -7,7 +7,7 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
   template: `
   <div [formGroup]="form" *ngIf="visible">
     <nz-form-item>
-      <nz-form-label [nzSpan]="labelSpan" [attr.for]="guid" [nzRequired]="required">{{label || key}}</nz-form-label>
+      <nz-form-label *ngIf="hideLabel" [nzSpan]="labelSpan" [attr.for]="guid" [nzRequired]="required">{{label || key}}</nz-form-label>
       <nz-form-control [nzSpan]="controlSpan" [nzOffset]="controlOffset" [nzErrorTip]="error"   >
         <label nz-checkbox [formControlName]="key"  (nzCheckedChange)="valueChanges.emit($event)" [nzDisabled]="disabled"   >
           <span>{{ label }}</span>
@@ -17,16 +17,19 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
   </div>
   `
 })
-export class FieldNzCheckboxComponent extends FieldNzBaseComponent {
-
-
-  @Input() options: { key: string, value: string }[] = [];
+export class FieldNzCheckboxComponent extends FieldNzBaseComponent implements OnInit {
 
   constructor(
     @SkipSelf() formComponent: FormComponent,
     @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent ) {
     super(formComponent, fieldGroupComponent );
 
+  }
+
+  ngOnInit(): void{
+    super.ngOnInit();
+
+    this.hideLabel = this.hideLabel === undefined ? true: this.hideLabel;
   }
 
 

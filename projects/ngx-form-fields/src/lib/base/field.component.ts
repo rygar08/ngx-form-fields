@@ -21,6 +21,7 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
   @Input() readonly: boolean;
   @Input() isInline = false;
   @Input() hideLabel = false;
+  @Input() value: any;
   control: FormControl | FormArray;
   isFormArray = false;
 
@@ -29,8 +30,6 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
     @SkipSelf() private formComponent: FormComponent,
     @Optional() @SkipSelf() private fieldGroupComponent: FieldGroupComponent) {
     super();
-
-
   }
 
 
@@ -55,10 +54,6 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
     this.control.valueChanges.pipe(debounceTime(this.formComponent.errorDelay)).subscribe(() => {
       this.formComponent.validateField(this.field);
     });
-
-    // this.control.valueChanges.subscribe((value) => {
-    //   this.valueChanges.emit(value);
-    // });
   }
 
   private initControl() {
@@ -74,7 +69,7 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
       this.options.forEach(() => fa.push(new FormControl(false)));
       this.control = fa;
     } else {
-      this.control = new FormControl(null, validators);
+      this.control = new FormControl(this.value, validators);
     }
 
 
