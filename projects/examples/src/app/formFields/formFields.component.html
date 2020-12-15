@@ -1,11 +1,14 @@
 <x-form #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
 
+  <x-bs-field-radio-list  key="options" [isInline]="true" [options]="braveOptions" ></x-bs-field-radio-list>
+  <x-bs-field-check-list  key="checklist" [isInline]="true" [options]="braveOptions" ></x-bs-field-check-list>
+
   <!--  Standard form input types -->
-  <x-bs-field type="text" key="id" disabled="true"></x-bs-field>
+ <x-bs-field type="text" key="id" disabled="true"></x-bs-field>
   <x-bs-field type="textarea" key="notes" label="Notes" required></x-bs-field>
 
   <!--  Create Custom field template -->
-  <app-custom-field type="select" key="firstName" ></app-custom-field>
+   <app-custom-field type="select" key="firstName" ></app-custom-field>
 
   <!--  Group validation -->
   <x-field-group key="pax" [validator]="paxValidator">
@@ -14,8 +17,8 @@
   </x-field-group>
 
   <!--  Show/Hide visiblity of fields -->
-  <x-bs-field type="select" key="brave" [options]="braveOptions" required  [visible]="showBrave" ></x-bs-field>
-  <x-bs-field type="checkbox" key="showBrave" (valueChanges)="showBraveChange($event)" ></x-bs-field>
+ <!-- <x-bs-field type="select" key="brave" [options]="braveOptions" ></x-bs-field> -->
+   <!-- <x-bs-field type="checkbox" key="showBrave" (valueChanges)="showBraveChange($event)" ></x-bs-field> -->
 
   <div class="alert alert-danger" *ngIf="appFrom.error">{{appFrom.error}} </div>
 

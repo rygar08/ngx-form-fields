@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Optional, Output, SkipSelf } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormArray, FormControl, Validators } from '@angular/forms';
 import { timer } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Field, ValidatorOption } from './field-base';
@@ -15,11 +15,14 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
   @Input() placeHolder = '';
   @Input() required = false;
   @Input() extras: any = {};
-  @Input() type: 'text' | 'email' | 'password' | 'checkbox' = 'text' ;
+  @Input() type: 'text' | 'email' | 'password' | 'checkbox' = 'text';
   @Input() validators: ValidatorOption[] = [];
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  public control: FormControl;
+  @Input() isInline = false;
+  control: FormControl | FormArray;
+  isFormArray = false;
+
 
   constructor(
     @SkipSelf() private formComponent: FormComponent,
@@ -63,7 +66,15 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
     const validators = this.validators?.length > 0 ? this.validators.map(m => m.validator) : [];
     if (this.required) { validators.push(Validators.required); }
     if (this.type === 'email') { validators.push(Validators.email); }
-    this.control = new FormControl(null, validators);
+
+    if (this.isFormArray) {
+      const fa = new FormArray([]);
+      this.options.forEach(() => fa.push(new FormControl(false)));
+      this.control = fa;
+    } else {
+      this.control = new FormControl(null, validators);
+    }
+
 
     this.field = {
       guid: this.guid, key: this.key, control: this.control, error$: this.error$,
@@ -98,8 +109,6 @@ export class FieldComponent extends FieldBaseComponent implements OnInit, AfterV
       this.formComponent.validateField(this.field);
     });
   }
-
-
 
 
 

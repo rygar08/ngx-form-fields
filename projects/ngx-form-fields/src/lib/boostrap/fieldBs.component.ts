@@ -1,4 +1,4 @@
-import { Component, Input, Optional, SkipSelf } from '@angular/core';
+import { Component, Input, OnInit, Optional, SkipSelf } from '@angular/core';
 import { FieldComponent, FieldGroupComponent, FormComponent } from '../base';
 
 @Component({
@@ -6,17 +6,19 @@ import { FieldComponent, FieldGroupComponent, FormComponent } from '../base';
   styleUrls: ['./field.component.scss'],
   templateUrl: './field.component.html'
 })
-export class FieldBsComponent extends FieldComponent {
+export class FieldBsComponent extends FieldComponent  {
 
 
   @Input() inputClass = 'form-control';
-  @Input() groupClass = 'form-group row';
+  @Input() groupClass = 'form-group';
 
   constructor(
     @SkipSelf() formComponent: FormComponent,
     @Optional() @SkipSelf() fieldGroupComponent: FieldGroupComponent) {
     super(formComponent, fieldGroupComponent);
   }
+
+
 
 
 }

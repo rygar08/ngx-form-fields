@@ -4,8 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormFieldsModule } from '../base';
 import { FieldBsComponent } from './fieldBs.component';
+import { FieldBsCheckListComponent } from './fieldBsCheckList.component';
+import { FieldBsRadioListComponent } from './fieldBsRadioList.component';
 
-const declarations = [FieldBsComponent];
+const declarations = [FieldBsComponent, FieldBsRadioListComponent, FieldBsCheckListComponent];
 const modules = [FormsModule, CommonModule, NgbModule, ReactiveFormsModule,  FormFieldsModule];
 
 @NgModule({

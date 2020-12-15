@@ -5,7 +5,6 @@ import { SharedModule } from '../shared/shared.module';
 import { FormFieldsExampleComponent } from './formFields.component';
 import { FormFieldsBsModule } from 'ngx-form-fields';
 
-
 const routes: Routes = [{ path: '', component: FormFieldsExampleComponent }];
 
 @NgModule({
