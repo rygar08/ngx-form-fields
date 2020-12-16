@@ -1,8 +1,8 @@
 import { Component, Input, Optional, SkipSelf  } from '@angular/core';
-import { FieldxComponent, FieldxGroupComponent, FieldxFormComponent } from 'fieldx';
+import { FormxComponent, FormxFieldComponent, FormxFieldGroupComponent } from 'fieldx';
 
 @Component({ template: `` })
-export class FieldNzBaseComponent extends FieldxComponent {
+export class FieldNzBaseComponent extends FormxFieldComponent {
 
   @Input() controlOffset = 0;
   @Input() controlSpan = 0;
@@ -10,8 +10,8 @@ export class FieldNzBaseComponent extends FieldxComponent {
 
 
   constructor(
-    @SkipSelf() formComponent: FieldxFormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
+    @SkipSelf() formComponent: FormxComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FormxFieldGroupComponent) {
     super(formComponent, fieldGroupComponent);
 
   }

@@ -1,33 +1,23 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ListField } from './list-field-base';
+import { ListField } from './listx';
 
-@Component({ template: `
-  <div #searchArea>
+@Component({ template: `` })
+export class ListxComponent implements OnInit, AfterViewInit {
 
-  </div>
-  <ng-content></ng-content>
-` })
-export class FieldxListComponent implements OnInit, AfterViewInit {
-
-  data$ = new Subject<Array<any>>();
-  fields: ListField[] = [];
-  title: string;
-  columnHeader = true;
-  loading = false;
-  pagination = false;
-  checkbox = false;
-  bordered = true;
+  @Input() data$ = new Subject<Array<any>>();
+  @Input() title: string;
+  @Input() pagination = false;
+  @Input() checkbox = false;
+  @Input() bordered = true;
+  @Input() size: 'small' | 'middle' | 'large' = 'small';
   noResult = false;
   pageIndex: number;
   pageSize: number;
-  size: 'small' | 'middle' | 'large' = 'small';
   fixedHeader = false;
   scrollHeight: number;
   editCache: { [key: string]: { edit: boolean; data: any } } = {};
-
-
-
+  fields: ListField[] = [];
   // sortOrder: NzTableSortOrder | null;
   // sortFn: NzTableSortFn | null;
   // listOfFilter: NzTableFilterList;

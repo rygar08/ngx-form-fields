@@ -12,6 +12,7 @@ export class FieldxNzFormComponent implements OnInit {
   showBrave = true;
   braveOptions = [];
 
+
   checkOptionsOne = [
     { label: 'Apple', value: 'Apple', checked: true },
     { label: 'Pear', value: 'Pear', checked: false },
@@ -57,5 +58,7 @@ export class FieldxNzFormComponent implements OnInit {
   showBraveChange(value) {
     this.showBrave = !this.showBrave;
   }
+
+
 
 }

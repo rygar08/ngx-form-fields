@@ -1,10 +1,10 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import {  FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { Field } from './field-base';
+import { FormField } from './formx';
 
 @Component({ template: '' })
-export abstract class FieldBaseComponent implements OnDestroy {
+export abstract class FormxFieldBaseComponent implements OnDestroy {
 
   @Input() key: string;
 
@@ -25,7 +25,7 @@ export abstract class FieldBaseComponent implements OnDestroy {
   readonly guid: string;
   public form: FormGroup;
   public isGroup: boolean;
-  public field: Field;
+  public field: FormField;
   public error: string;
   error$ = new Subject<string>();
 

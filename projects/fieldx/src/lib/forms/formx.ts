@@ -7,14 +7,14 @@ export class ValidatorOption {
   error: string;
 }
 
-export class Field {
+export class FormField {
   guid: string;
   key: string;
   label: string;
   isGroup: boolean;
   control: FormControl;
   validators: ValidatorOption[] = [];
-  fields: Field[] = [];
+  fields: FormField[] = [];
   error$ = new Subject<string>();
 }
 

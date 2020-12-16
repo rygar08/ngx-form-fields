@@ -1,8 +1,7 @@
 
 
-export * from './field-base';
-export * from './fieldx.component';
-export * from './fieldxBase.component';
-export * from './fieldxGroup.component';
-export * from './fieldxForm.component';
-export * from './fieldx.module';
+export * from './formx';
+export * from './formxField.component';
+export * from './formxFieldBase.component';
+export * from './formxFieldGroup.component';
+export * from './formx.component';

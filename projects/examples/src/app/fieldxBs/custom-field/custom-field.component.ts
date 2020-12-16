@@ -1,5 +1,5 @@
 import { Component, Optional, SkipSelf } from '@angular/core';
-import { FieldxGroupComponent, FieldxFormComponent } from 'fieldx';
+import { FormxComponent, FormxFieldGroupComponent } from 'fieldx';
 import { FieldBsComponent } from 'fieldx-bs';
 
 @Component({
@@ -9,8 +9,8 @@ import { FieldBsComponent } from 'fieldx-bs';
 export class CustomFieldComponent extends FieldBsComponent {
 
   constructor(
-    @SkipSelf() formComponent: FieldxFormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
+    @SkipSelf() formComponent: FormxComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FormxFieldGroupComponent) {
     super(formComponent, fieldGroupComponent);
   }
 

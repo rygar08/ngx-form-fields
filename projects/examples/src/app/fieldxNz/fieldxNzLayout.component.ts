@@ -12,8 +12,6 @@ export class FieldxNzLayoutComponent implements OnInit {
   paxValidator: any;
   showBrave = true;
   braveOptions = [];
-  visible = true;
-  modalVisible = true;
 
   checkOptionsOne = [
     { label: 'Apple', value: 'Apple', checked: true },
@@ -61,25 +59,4 @@ export class FieldxNzLayoutComponent implements OnInit {
     this.showBrave = !this.showBrave;
   }
 
-  open(): void {
-    this.visible = true;
-  }
-
-  close(): void {
-    this.visible = false;
-  }
-
-  showModal(): void {
-    this.modalVisible = true;
-  }
-
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.modalVisible = false;
-  }
-
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.modalVisible = false;
-  }
 }

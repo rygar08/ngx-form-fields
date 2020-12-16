@@ -23,17 +23,23 @@ import { FieldNzRadioComponent } from './fieldRadio.component';
 import { FieldNzCheckListComponent } from './fieldCheckList.component';
 import { FieldNzRadioListComponent } from './fieldRadioList.component';
 import { FieldxModule } from 'fieldx';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { AgGridModule } from 'ag-grid-angular';
+import { ListxNzComponent } from './listx/listx.component';
+import 'ag-grid-enterprise';
 
 const declarations = [ FieldNzInputComponent, FieldNzBaseComponent, FieldNzSelectComponent, FieldNzCheckboxComponent,
   FieldNzDateComponent, FieldNzTimeComponent, FieldNzNumberComponent, FieldNzRadioComponent, FieldNzCheckListComponent,
-  FieldNzRadioListComponent
+  FieldNzRadioListComponent, ListxNzComponent
 ];
-const modules = [FormsModule, CommonModule, ReactiveFormsModule,  FieldxModule,  NzFormModule, NzButtonModule, NzIconModule,
-  NzSelectModule, NzInputModule, NzRadioModule, NzDatePickerModule, NzTimePickerModule, NzInputNumberModule, NzCheckboxModule];
+const modules = [FormsModule, CommonModule, ReactiveFormsModule,  FieldxModule, NzDrawerModule, NzModalModule,
+  NzFormModule, NzButtonModule, NzIconModule, NzSelectModule, NzInputModule, NzRadioModule,
+  NzDatePickerModule, NzTimePickerModule, NzInputNumberModule, NzCheckboxModule, AgGridModule.withComponents([])];
 
 @NgModule({
   imports: [modules],
-  declarations: [declarations],
+  declarations: [declarations, ListxNzComponent],
   exports: [modules, declarations],
 
 })

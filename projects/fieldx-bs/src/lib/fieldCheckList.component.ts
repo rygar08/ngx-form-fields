@@ -1,7 +1,7 @@
-import { Component, Input, Optional, SkipSelf } from '@angular/core';
+import { Component, Optional, SkipSelf } from '@angular/core';
 import { FormArray, } from '@angular/forms';
 import { FieldBsComponent } from '.';
-import { FieldxFormComponent, FieldxGroupComponent } from 'fieldx';
+import { FormxComponent,  FormxFieldGroupComponent } from 'fieldx';
 
 @Component({
   selector: 'fieldx-check-list',
@@ -28,8 +28,8 @@ export class FieldBsCheckListComponent extends FieldBsComponent {
   }
 
   constructor(
-    @SkipSelf() formComponent: FieldxFormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
+    @SkipSelf() formComponent: FormxComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FormxFieldGroupComponent) {
     super(formComponent, fieldGroupComponent);
     this.isFormArray = true;
   }

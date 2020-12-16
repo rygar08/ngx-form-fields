@@ -1,4 +1,4 @@
-<fieldx-form #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
+<formx #appFrom (submitForm)="onSubmit($event)" class="container" [query]="query$">
 
   <fieldx-radio-list  key="options" [isInline]="true" [options]="braveOptions" ></fieldx-radio-list>
   <fieldx-check-list  key="checklist" [isInline]="true" [options]="braveOptions" ></fieldx-check-list>
@@ -27,4 +27,4 @@
       (click)="appFrom.submit()">Save</button>
   </div>
 
-</fieldx-form>
+</formx>

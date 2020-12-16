@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, Input, OnInit, Optional, SkipSelf } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Field, ValidatorOption } from './field-base';
-import { FieldBaseComponent as FieldxBaseComponent } from './fieldxBase.component';
-import { FieldxFormComponent } from './fieldxForm.component';
+import { FormField, ValidatorOption } from './formx';
+import { FormxFieldBaseComponent as FormxFieldBaseComponent } from './formxFieldBase.component';
+import { FormxComponent } from './formx.component';
 
 @Component({
   selector: 'fieldx-group',
@@ -13,14 +13,14 @@ import { FieldxFormComponent } from './fieldxForm.component';
               </span>
              </div>`
 })
-export class FieldxGroupComponent extends FieldxBaseComponent implements OnInit, AfterViewInit {
+export class FormxFieldGroupComponent extends FormxFieldBaseComponent implements OnInit, AfterViewInit {
 
   @Input() validator: ValidatorOption;
-  public fields: Field[] = [];
+  public fields: FormField[] = [];
 
   constructor(
-    @SkipSelf() private formComponent: FieldxFormComponent,
-    @Optional() @SkipSelf() private fieldGroupComponent: FieldxGroupComponent, public fb: FormBuilder) {
+    @SkipSelf() private formComponent: FormxComponent,
+    @Optional() @SkipSelf() private fieldGroupComponent: FormxFieldGroupComponent, public fb: FormBuilder) {
     super();
 
     this.error$.subscribe(err => {
@@ -53,7 +53,7 @@ export class FieldxGroupComponent extends FieldxBaseComponent implements OnInit,
       label: this.label,
       error$: this.error$,
       fields: this.fields
-    } as Field;
+    } as FormField;
 
     if (this.visible) {
       if (this.fieldGroupComponent) {
@@ -74,11 +74,11 @@ export class FieldxGroupComponent extends FieldxBaseComponent implements OnInit,
     }
   }
 
-  addField(field: Field) {
+  addField(field: FormField) {
     this.fields.push(field);
   }
 
-  removeField(field: Field) {
+  removeField(field: FormField) {
     this.fields = this.fields.filter(f => f.guid !== field.guid);
   }
 

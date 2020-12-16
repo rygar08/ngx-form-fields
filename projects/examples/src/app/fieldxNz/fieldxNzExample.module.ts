@@ -30,6 +30,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [FieldxNzLayoutComponent, FieldxNzFormComponent],
-  imports: [SharedModule, RouterModule.forChild(routes), FieldxNzModule,NzIconModule,NzDrawerModule,NzModalModule, HttpClientModule, NzTabsModule, NzLayoutModule]
+  imports: [SharedModule, RouterModule.forChild(routes), FieldxNzModule, NzIconModule,
+    NzDrawerModule, NzModalModule, HttpClientModule, NzTabsModule, NzLayoutModule]
 })
 export class FieldxNzExample { }

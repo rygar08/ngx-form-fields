@@ -1,18 +1,18 @@
 import { Component, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Field } from './field-base';
+import { FormField } from './formx';
 
 
 @Component({
-  selector: 'fieldx-form',
+  selector: 'formx',
   template: `
   <form (submit)="submit()" [formGroup]="form">
     <ng-content></ng-content>
   </form>
   `
 })
-export class FieldxFormComponent implements AfterViewInit {
+export class FormxComponent implements AfterViewInit {
 
   @Output() submitForm = new EventEmitter();
   @Input() validator: ValidatorFn;
@@ -20,7 +20,7 @@ export class FieldxFormComponent implements AfterViewInit {
   @Input() errorDelay = 800;
   @Input() query: Observable<any>;
   public data: any;
-  public fields: Field[] = [];
+  public fields: FormField[] = [];
   public form: FormGroup;
   public error: string;
 
@@ -91,7 +91,7 @@ export class FieldxFormComponent implements AfterViewInit {
   setValues(fields: any) {
 
     if (fields && this.data) {
-      fields.forEach((field: Field) => {
+      fields.forEach((field: FormField) => {
         if (field.isGroup) {
           this.setValues(field.fields);
         } else {
@@ -104,9 +104,9 @@ export class FieldxFormComponent implements AfterViewInit {
 
   }
 
-  processErrors(fields: Field[]) {
+  processErrors(fields: FormField[]) {
     if (fields) {
-      fields.forEach((field: Field) => {
+      fields.forEach((field: FormField) => {
         if (field.isGroup) {
           this.processErrors(field.fields);
         } else {
@@ -117,16 +117,16 @@ export class FieldxFormComponent implements AfterViewInit {
   }
 
 
-  addField(field: Field) {
+  addField(field: FormField) {
     this.fields.push(field);
   }
 
-  removeField(field: Field) {
+  removeField(field: FormField) {
     this.fields = this.fields.filter(f => f.guid !== field.guid);
   }
 
 
-  validateField(field: Field, showallError?: boolean) {
+  validateField(field: FormField, showallError?: boolean) {
     let error = '';
     const c = field.control;
     const invalid = showallError ? c.errors : (c.dirty || c.touched) && c.errors;

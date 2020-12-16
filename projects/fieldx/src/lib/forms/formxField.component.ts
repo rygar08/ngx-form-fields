@@ -2,13 +2,13 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Optional, Output
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { timer } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { Field, ValidatorOption } from './field-base';
-import { FieldBaseComponent as FieldxBaseComponent } from './fieldxBase.component';
-import { FieldxGroupComponent } from './fieldxGroup.component';
-import { FieldxFormComponent } from './fieldxForm.component';
+import { FormField, ValidatorOption } from './formx';
+import { FormxFieldBaseComponent as FieldxBaseComponent } from './formxFieldBase.component';
+import { FormxFieldGroupComponent as FieldGroupxComponent } from './formxFieldGroup.component';
+import { FormxComponent as FormxComponent } from './formx.component';
 
 @Component({ template: `` })
-export class FieldxComponent extends FieldxBaseComponent implements OnInit, AfterViewInit {
+export class FormxFieldComponent extends FieldxBaseComponent implements OnInit, AfterViewInit {
 
   @Output() valueChanges = new EventEmitter();
   @Input() options: { key: string, value: string }[] = [];
@@ -27,8 +27,8 @@ export class FieldxComponent extends FieldxBaseComponent implements OnInit, Afte
 
 
   constructor(
-    @SkipSelf() private formComponent: FieldxFormComponent,
-    @Optional() @SkipSelf() private fieldGroupComponent: FieldxGroupComponent) {
+    @SkipSelf() private formComponent: FormxComponent,
+    @Optional() @SkipSelf() private fieldGroupComponent: FieldGroupxComponent) {
     super();
   }
 
@@ -76,7 +76,7 @@ export class FieldxComponent extends FieldxBaseComponent implements OnInit, Afte
     this.field = {
       guid: this.guid, key: this.key, control: this.control, error$: this.error$,
       isGroup: this.isGroup, label: this.label, validators: this.validators
-    } as Field;
+    } as FormField;
 
   }
 

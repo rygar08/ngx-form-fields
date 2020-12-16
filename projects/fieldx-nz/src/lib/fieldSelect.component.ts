@@ -1,5 +1,5 @@
 import { Component, Input, Optional, SkipSelf } from '@angular/core';
-import { FieldxFormComponent, FieldxGroupComponent } from 'fieldx';
+import { FormxComponent, FormxFieldGroupComponent } from 'fieldx';
 import { FieldNzBaseComponent } from './fieldNzBase.component';
 
 @Component({
@@ -26,8 +26,8 @@ export class FieldNzSelectComponent extends FieldNzBaseComponent {
   @Input() options: { key: string, value: string }[] = [];
 
   constructor(
-    @SkipSelf() formComponent: FieldxFormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
+    @SkipSelf() formComponent: FormxComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FormxFieldGroupComponent) {
     super(formComponent, fieldGroupComponent );
 
   }

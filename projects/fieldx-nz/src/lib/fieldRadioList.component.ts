@@ -1,5 +1,5 @@
 import { Component, Optional, SkipSelf } from '@angular/core';
-import { FieldxFormComponent, FieldxGroupComponent } from 'fieldx';
+import { FormxComponent, FormxFieldGroupComponent } from 'fieldx';
 import { FieldNzBaseComponent } from './fieldNzBase.component';
 
 @Component({
@@ -29,8 +29,8 @@ import { FieldNzBaseComponent } from './fieldNzBase.component';
 export class FieldNzRadioListComponent extends FieldNzBaseComponent  {
 
   constructor(
-    @SkipSelf() formComponent: FieldxFormComponent,
-    @Optional() @SkipSelf() fieldGroupComponent: FieldxGroupComponent) {
+    @SkipSelf() formComponent: FormxComponent,
+    @Optional() @SkipSelf() fieldGroupComponent: FormxFieldGroupComponent) {
     super(formComponent, fieldGroupComponent);
 
   }

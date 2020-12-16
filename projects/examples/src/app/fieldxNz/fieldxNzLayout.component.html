@@ -27,23 +27,10 @@
         <router-outlet></router-outlet>
       </div>
     </nz-content>
-    <nz-footer> <button nz-button nzType="primary" (click)="open()">Open Drawer</button> <button nz-button nzType="primary" (click)="showModal()">Open Modal</button>
+    <nz-footer>
     </nz-footer>
   </nz-layout>
 </nz-layout>
 
-<nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzTitle="Basic Drawer" (nzOnClose)="close()" >
-  <ng-container *nzDrawerContent>
-    <p>Some contents...</p>
-    <p>Some contents...</p>
-    <p>Some contents...</p>
-  </ng-container>
-</nz-drawer>
 
-<nz-modal [(nzVisible)]="modalVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-  <ng-container *nzModalContent>
-    <p>Content one</p>
-    <p>Content two</p>
-    <p>Content three</p>
-  </ng-container>
-</nz-modal>
+
