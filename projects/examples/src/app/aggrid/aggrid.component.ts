@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { ClickableStatusBarComponent } from './clickable-status-bar-component';
 import { CountStatusBarComponent } from './count-status-bar-component';
 import { CustomLoadingOverlay } from './custom-loading-overlay.component';
@@ -9,24 +7,28 @@ import { CustomNoRowsOverlay } from './custom-norows-overlay.component';
 import { CustomTooltip } from './custom-tooltip-component';
 
 
+
 @Component({
   selector: 'aggrid',
-  template: `<div style="height: 100%; box-sizing: border-box;">
+  template: `<div class="example-wrapper" >
   <div style="margin-bottom: 5px;">
       <button (click)="onBtShowLoading()">Show Loading Overlay</button>
       <button (click)="onBtShowNoRows()">Show No Rows Overlay</button>
       <button (click)="onBtHide()">Hide Overlay</button>
 
     </div>
+
     <div class="example-header">
       Selection:
       <span id="selectedRows"></span>
+      <input type="text" [placeholder]="'Filter'" [ngModel]="filterValue" (ngModelChange)="onQuickFilterChanged($event)" />
     </div>
     <ag-grid-angular
       #agGrid
       style="width: 100%; height: 500px;"
       id="myGrid"
-      class="ag-theme-alpine"
+
+      class="ag-theme-balham-dark"
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [defaultColGroupDef]="defaultColGroupDef"
@@ -40,7 +42,9 @@ import { CustomTooltip } from './custom-tooltip-component';
       [rowData]="rowData"
       [statusBar]="statusBar"
       [rowSelection]="rowSelection"
+      [rowClassRules]="rowClassRules"
        (selectionChanged)="onSelectionChanged($event)"
+       (cellValueChanged)="onCellValueChanged($event)"
       (gridReady)="onGridReady($event)"
     ></ag-grid-angular>
   </div>`,
@@ -48,6 +52,16 @@ import { CustomTooltip } from './custom-tooltip-component';
 export class AggridComponent {
   private gridApi;
   private gridColumnApi;
+
+  // update transactions
+  // https://www.ag-grid.com/javascript-grid-rxjs/
+
+  //   agTextCellEditor: Simple text editor that uses a standard HTML input. This is the default.
+  // agPopupTextCellEditor: Same as 'text' but as popup.
+  // agLargeTextCellEditor: A text popup for inputting larger, multi-line text.
+  // agSelectCellEditor: Simple editor that uses a standard HTML select.
+  // agPopupSelectCellEditor: Same as 'select' but as popup.
+  // agRichSelectCellEditor (ag-Grid Enterprise only): A rich select popup that uses row virtualisation
 
   // public modules: Module[] = AllCommunityModules;
   columnDefs;
@@ -67,6 +81,8 @@ export class AggridComponent {
   statusBar;
   tooltipShowDelay;
   rowSelection = 'single';
+  rowClassRules;
+  filterValue: string;
 
   constructor(private http: HttpClient) {
     this.window = window;
@@ -78,17 +94,48 @@ export class AggridComponent {
       {
         field: 'make',
         cellEditor: 'agSelectCellEditor',
+        // cellClass: ['my-class1','my-class2'],
         cellEditorParams: {
           values: ['Porsche', 'Toyota', 'Ford', 'AAA', 'BBB', 'CCC'],
         },
       },
-      { headerName: 'Sport', field: 'sport', sortable: false },
-      { headerName: 'Age', field: 'age', type: 'numberColumn', editable: false,},
-      { headerName: 'Year', field: 'year', type: 'numberColumn', },
+      {
+        headerName: 'Medals',
+        groupId: 'medalsGroup',
+        children: [
+          { headerName: 'Gold', field: 'gold', type: 'medalColumn', },
+          { headerName: 'Silver', field: 'silver', type: 'medalColumn', },
+          { headerName: 'Bronze', field: 'bronze', type: 'medalColumn', },
+          { headerName: 'Total', field: 'total', type: 'medalColumn', columnGroupShow: 'closed', },
+        ],
+      },
+      { headerName: 'Sport', field: 'sport', sortable: false, cellStyle: { color: 'red', 'background-color': 'green' } },
+      {
+        headerName: 'Age', field: 'age', type: 'numberColumn', editable: false, cellStyle: function (params) {
+          if (params.value > 8) {
+            return { color: 'white', backgroundColor: 'red' };
+          } else {
+            return null;
+          }
+        }
+      },
+      {
+        headerName: 'Year', field: 'year', type: 'numberColumn',
+        cellClass: function (params) { return params.value < 2010  ? 'my-class-1' : 'my-class-2' ; },
+        cellRenderer: this.ragRenderer,
+      },
+      {
+        headerName: 'Total',
+        valueGetter: 'data.age + data.year',
+        editable: false,
+        aggFunc: 'sum',
+        cellClass: 'total-col',
+      },
       { headerName: 'Date', field: 'date', type: ['dateColumn', 'editableColumn'], width: 220, },
 
     ];
     this.defaultColDef = {
+      flex: 1,
       width: 150, editable: true, sortable: true,
       filter: 'agTextColumnFilter', floatingFilter: true, resizable: true,
       tooltipComponent: 'customTooltip',
@@ -153,6 +200,26 @@ export class AggridComponent {
     this.sideBar = { toolPanels: ['columns'] };
     this.rowGroupPanelShow = 'always';
     this.pivotPanelShow = 'always';
+
+    this.rowClassRules = {
+      'sick-days-warning': function (params) {
+        return params.data.year > 2012;
+      },
+      'sick-days-breach': 'data.age >= 26',
+    };
+
+  }
+
+  onQuickFilterChanged(value) {
+    this.gridApi.setQuickFilter(value);
+  }
+
+  ragRenderer(params) {
+    return '<span class="rag-element">' + params.value + '</span>';
+  }
+
+  onCellValueChanged(event) {
+    console.log('data after changes is: ', event.data);
   }
 
   onSelectionChanged(e) {
@@ -225,6 +292,7 @@ export class AggridComponent {
   setColumnDefs() {
     this.gridApi.setColumnDefs(this.columnDefs);
   }
+
 
   onGridReady(params) {
     this.gridApi = params.api;

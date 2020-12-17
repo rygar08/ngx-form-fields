@@ -1,6 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('../../../node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css');
+@import url('ng-zorro-antd/src/ng-zorro-antd.min.css');
 // @import url('../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css');
-@import "../../../node_modules/ag-grid-community/dist/styles/ag-grid.css";
-@import "../../../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "ag-grid-community/dist/styles/ag-grid.scss";
+@import "ag-grid-community/dist/styles/ag-theme-balham-dark.css";
 // node_modules\ng-zorro-antd\src\ng-zorro-antd.css
+
+.example-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#myGrid {
+  flex: 1 1 0px;
+  width: 100%;
+}
+
+.sick-days-warning {
+  background-color: sandybrown !important;
+}
+
+.sick-days-breach {
+  background-color: lightcoral !important;
+}
+
+.my-class-1 {
+  background-color: pink;
+}
+
+.rag-element {
+  background-color: lightcoral;
+}
