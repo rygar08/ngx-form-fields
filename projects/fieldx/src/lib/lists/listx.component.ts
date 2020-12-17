@@ -18,6 +18,24 @@ export class ListxComponent implements OnInit, AfterViewInit {
   scrollHeight: number;
   editCache: { [key: string]: { edit: boolean; data: any } } = {};
   fields: ListField[] = [];
+
+
+  columns = [
+    { field: 'make', sortable: true, filter: true, checkboxSelection: true, rowGroup: true },
+    { field: 'model', sortable: true, filter: true },
+    { field: 'price', sortable: true, filter: true }
+  ];
+
+  autoGroupColumnDef = {
+    headerName: 'Model',
+    field: 'model',
+    cellRenderer: 'agGroupCellRenderer',
+    cellRendererParams: {
+      checkbox: true
+    }
+  };
+
+  rowData: Observable<any>
   // sortOrder: NzTableSortOrder | null;
   // sortFn: NzTableSortFn | null;
   // listOfFilter: NzTableFilterList;

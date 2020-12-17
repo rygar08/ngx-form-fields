@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 
 
 @Component({
-  selector: 'listx',
+  selector: 'aggrid',
   template: `<div style="height: 100%; box-sizing: border-box;">
     <ag-grid-angular
       #agGrid
-      style="width: 100%; height: 100%;"
+      style="width: 100%; height: 500px;"
       id="myGrid"
       class="ag-theme-alpine"
       [columnDefs]="columnDefs"
@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
     ></ag-grid-angular>
   </div>`,
 })
-export class ListxNzComponent {
+export class AggridComponent {
   private gridApi;
   private gridColumnApi;
 
@@ -36,7 +36,7 @@ export class ListxNzComponent {
       { headerName: 'Sport', field: 'sport' },
       { headerName: 'Age', field: 'age', type: 'numberColumn', },
       { headerName: 'Year', field: 'year', type: 'numberColumn', },
-      { headerName: 'Date', field: 'date', type: ['dateColumn', 'nonEditableColumn'], width: 220, },
+      { headerName: 'Date', field: 'date', type: ['dateColumn', 'editableColumn'], width: 220, },
       {
         headerName: 'Medals',
         groupId: 'medalsGroup',

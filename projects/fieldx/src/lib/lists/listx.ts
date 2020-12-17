@@ -10,14 +10,13 @@ export class ListField {
   control: FormControl;
   validators: ValidatorOption[] = [];
   error$ = new Subject<string>();
-  // sortOrder: NzTableSortOrder | null;
-  // sortFn: NzTableSortFn | null;
-  // listOfFilter: NzTableFilterList;
-  // filterFn: NzTableFilterFn | null;
-  // filterMultiple: boolean;
-  // sortDirections: NzTableSortOrder[];
+  editable: boolean,
+  sortable: boolean,
+  filter: boolean,
+  checkboxSelection: boolean,
+  rowGroup: true;
   readonly = false;
-  groupby: string;
+  groupby: boolean;
   colSpan: number;
   fixedLeft = false;
   fixedRight = false;
