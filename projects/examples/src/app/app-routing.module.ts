@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'fieldxNz',
     loadChildren: () => import('./fieldxNz/fieldxNzExample.module').then((m) => m.FieldxNzExample),
+  },
+  {
+    path: 'aggrid',
+    loadChildren: () => import('./aggrid/aggrid.module').then((m) => m.AggridExampleModule),
   }
 ];
 
