@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 
 @Component({
@@ -29,11 +31,14 @@ export class AggridComponent {
   defaultColGroupDef;
   columnTypes;
   rowData: [];
+  sideBar;
+  rowGroupPanelShow;
+  pivotPanelShow;
 
   constructor(private http: HttpClient) {
     this.columnDefs = [
-      { headerName: 'Athlete', field: 'athlete', },
-      { headerName: 'Sport', field: 'sport' },
+      { headerName: 'Athlete', wrapText: true, field: 'athlete', resizable: true, width: 90, minWidth: 50, maxWidth: 150, },
+      { headerName: 'Sport', field: 'sport', sortable: false },
       { headerName: 'Age', field: 'age', type: 'numberColumn', },
       { headerName: 'Year', field: 'year', type: 'numberColumn', },
       { headerName: 'Date', field: 'date', type: ['dateColumn', 'editableColumn'], width: 220, },
@@ -48,7 +53,7 @@ export class AggridComponent {
         ],
       },
     ];
-    this.defaultColDef = { width: 150, editable: true, filter: 'agTextColumnFilter', floatingFilter: true, resizable: true, };
+    this.defaultColDef = { width: 150, editable: true, sortable: true, filter: 'agTextColumnFilter', floatingFilter: true, resizable: true, };
     this.defaultColGroupDef = { marryChildren: true };
     this.columnTypes = {
       numberColumn: { width: 130, filter: 'agNumberColumnFilter', },
@@ -74,11 +79,80 @@ export class AggridComponent {
         },
       },
     };
+
+    this.sideBar = { toolPanels: ['columns'] };
+    this.rowGroupPanelShow = 'always';
+    this.pivotPanelShow = 'always';
+  }
+
+  sizeToFit() {
+    this.gridApi.sizeColumnsToFit();
+  }
+
+  autoSizeAll(skipHeader) {
+    var allColumnIds = [];
+    this.gridColumnApi.getAllColumns().forEach(function (column) {
+      allColumnIds.push(column.colId);
+    });
+    this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
+  }
+
+
+  pinCountry() {
+    this.gridColumnApi.applyColumnState({
+      state: [
+        {
+          colId: 'country',
+          pinned: 'left',
+        },
+      ],
+      defaultState: { pinned: null },
+    });
+  }
+
+
+  saveState() {
+    window.colState = this.gridColumnApi.getColumnState();
+    console.log('column state saved');
+  }
+
+
+  restoreState() {
+    if (!window.colState) {
+      console.log('no columns state to restore by, you must save state first');
+      return;
+    }
+    this.gridColumnApi.applyColumnState({
+      state: window.colState,
+      applyOrder: true,
+    });
+    console.log('column state restored');
+  }
+
+  resetState() {
+    this.gridColumnApi.resetColumnState();
+    console.log('column state reset');
+  }
+
+  setColumnDefs() {
+    this.gridApi.setColumnDefs(this.columnDefs);
   }
 
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+
+    var defaultSortModel = [
+      {
+        colId: 'athlete',
+        sort: 'asc',
+      },
+      {
+        colId: 'sport',
+        sort: 'desc',
+      },
+    ];
+    params.api.setSortModel(defaultSortModel);
 
     this.http
       .get(
