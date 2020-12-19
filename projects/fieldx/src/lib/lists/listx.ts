@@ -10,10 +10,10 @@ export class ListField {
   control: FormControl;
   validators: ValidatorOption[] = [];
   error$ = new Subject<string>();
-  editable: boolean,
-  sortable: boolean,
-  filter: boolean,
-  checkboxSelection: boolean,
+  editable: boolean;
+  sortable: boolean;
+  filter: boolean;
+  checkboxSelection: boolean;
   rowGroup: true;
   readonly = false;
   groupby: boolean;

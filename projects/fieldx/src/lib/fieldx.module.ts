@@ -5,10 +5,9 @@ import { FormxFieldComponent } from './forms/formxField.component';
 import { FormxComponent as FormxComponent } from './forms/formx.component';
 import { FormxFieldBaseComponent, FormxFieldGroupComponent } from './forms';
 import { ListxComponent } from './lists/listx.component';
-import { ModelxComponent } from './model';
 
 const declarations = [FormxFieldComponent, FormxFieldBaseComponent, FormxComponent,
-        FormxFieldGroupComponent, ListxComponent, ModelxComponent];
+        FormxFieldGroupComponent, ListxComponent];
 const modules = [FormsModule, CommonModule, ReactiveFormsModule];
 
 @NgModule({

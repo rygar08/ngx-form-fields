@@ -17,13 +17,7 @@ import { Component } from '@angular/core';
       [rowData]="rowData"
       (gridReady)="onGridReady($event)"
     ></ag-grid-angular>
-  </div>
-  <ng-template #formContainer></ng-template>
-  `
-
-
-
-  ,
+  </div>`,
 })
 export class ListxNzComponent {
   private gridApi;

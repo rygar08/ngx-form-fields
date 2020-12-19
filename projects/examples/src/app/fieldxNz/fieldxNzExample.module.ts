@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { TestComponent } from './test.component';
+import { ModalxService } from './modalx.service';
 
 
 const routes: Routes = [
@@ -32,6 +33,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [FieldxNzLayoutComponent, FieldxNzFormComponent, TestComponent],
   imports: [SharedModule, RouterModule.forChild(routes), FieldxNzModule, NzIconModule,
-    NzDrawerModule, NzModalModule, HttpClientModule, NzTabsModule, NzLayoutModule]
+    NzDrawerModule, NzModalModule, HttpClientModule, NzTabsModule, NzLayoutModule],
+  providers: [
+    ModalxService
+  ]
 })
 export class FieldxNzExample { }

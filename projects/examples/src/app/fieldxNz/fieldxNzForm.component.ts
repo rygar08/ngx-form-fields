@@ -1,7 +1,9 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, } from '@angular/core';
+import { Component, OnInit, SkipSelf, ViewChild, ViewContainerRef, } from '@angular/core';
 import { FormGroup, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { TestComponent } from './test.component';
+import { ModalxService } from './modalx.service';
+import { componentViewer, TestComponent } from './test.component';
+
 
 @Component({
   templateUrl: './fieldxNzForm.component.html'
@@ -9,7 +11,6 @@ import { TestComponent } from './test.component';
 export class FieldxNzFormComponent implements OnInit {
 
 
-  @ViewChild("formContainer", { read: ViewContainerRef }) formContainerRef;
   query$: Observable<any>;
   paxValidator: any;
   showBrave = true;
@@ -17,15 +18,16 @@ export class FieldxNzFormComponent implements OnInit {
   formVisible = false;
   formType = 'inline';
 
-
   checkOptionsOne = [
     { label: 'Apple', value: 'Apple', checked: true },
     { label: 'Pear', value: 'Pear', checked: false },
     { label: 'Orange', value: 'Orange', checked: false }
   ];
 
+  component: componentViewer;
+
   constructor(
-    private resolver: ComponentFactoryResolver) {
+     private mx: ModalxService ) {
 
     // this.query$ = this.qx.call(queryStr).pipe(
     //   map((result) => result?.data?.students[0]));
@@ -34,6 +36,15 @@ export class FieldxNzFormComponent implements OnInit {
       { key: 'great', value: 'Great' },
       { key: 'good', value: 'Good' },
       { key: 'unproven', value: 'Unproven' }];
+
+    this.component = {
+      closeable: true,
+      component: TestComponent,
+      data: { count: 20 },
+      title: 'Hello world',
+      type: 'drawer',
+      width: 500
+    } as componentViewer;
 
   }
 
@@ -54,30 +65,20 @@ export class FieldxNzFormComponent implements OnInit {
   }
 
   showForm(type) {
-    this.formType = type;
-    this.formVisible = !this.formVisible;
+    this.component.type = type;
+    this.mx.show(this.component);
   }
 
-  onSubmit(value) {
+  onSubmit() {
     // if (this.validate()) {
     //   this.payLoad = JSON.stringify(this.form.getRawValue());
     // }
   }
 
-  showBraveChange(value) {
+  showBraveChange() {
     this.showBrave = !this.showBrave;
   }
 
-
-
-  loadComponent() {
-    const componentFactory = this.resolver.resolveComponentFactory(TestComponent);
-
-    this.formContainerRef.clear();
-
-    const componentRef = this.formContainerRef.createComponent(componentFactory);
-    componentRef.instance.count = 2;
-  }
 
 
 }
