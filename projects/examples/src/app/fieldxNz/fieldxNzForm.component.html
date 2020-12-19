@@ -1,4 +1,4 @@
- <!-- <modelx model="allocations" formViewer="drawer"   >
+<!-- <modelx model="allocations" formViewer="drawer"   >
   <listx >
     <h4>list working</h4>
       <listfieldx key="id"></listfieldx>
@@ -21,10 +21,41 @@
         </div>
   </formx>
 </modelx> -->
+<button nz-button nzType="primary" (click)="showForm('inline')">Show inline Form</button>
+<button nz-button nzType="primary" (click)="showForm('modal')">Show modal Form</button>
+<button nz-button nzType="primary" (click)="showForm('drawer')">Show drawer Form</button>
+<button nz-button nzType="primary" (click)="loadComponent()">Load Component</button>
 
+
+ <!-- <listx [formTemplate]="myForm" [formView]="{ data: 12}">
+
+</listx> -->
+
+
+<ng-template #formContainer></ng-template>
+
+
+<!-- <modalx [visible]="formVisible" [type]="formType" >
+  <formx nz-form nzLayout="vertical" #appForm (submitForm)="onSubmit($event)" class="container" >
+    <fieldx key="id"></fieldx>
+    <fieldx type='text' key="notes" label="Notes" required></fieldx>
+    <fieldx type='textarea' key="moreNotes" label="More Notes" required></fieldx>
+    <fieldx key="firstname" required disabled="true"></fieldx>
+
+    <div class="alert alert-danger" *ngIf="appForm.error">{{appForm.error}} </div>
+
+    <div class="form-row">
+      <button type="submit" nz-button nzType="primary" (click)="appForm.submit()">Save</button>
+    </div>
+  </formx>
+</modalx> -->
+
+
+
+<!--
 <listx >
 
-</listx>
+</listx> -->
 
 <!--
 <button nz-button nzType="primary" (click)="open()">Open Drawer</button>
@@ -75,7 +106,3 @@
     {{ appForm.form.value | json }}
 
   </formx> -->
-
-
-
-

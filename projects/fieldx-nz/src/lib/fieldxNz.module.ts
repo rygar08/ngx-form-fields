@@ -28,10 +28,11 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { AgGridModule } from 'ag-grid-angular';
 import { ListxNzComponent } from './listx/listx.component';
 import 'ag-grid-enterprise';
+import { ModalxComponent } from './modalx/modalx.component';
 
 const declarations = [ FieldNzInputComponent, FieldNzBaseComponent, FieldNzSelectComponent, FieldNzCheckboxComponent,
   FieldNzDateComponent, FieldNzTimeComponent, FieldNzNumberComponent, FieldNzRadioComponent, FieldNzCheckListComponent,
-  FieldNzRadioListComponent, ListxNzComponent
+  FieldNzRadioListComponent, ListxNzComponent, ModalxComponent
 ];
 const modules = [FormsModule, CommonModule, ReactiveFormsModule,  FieldxModule, NzDrawerModule, NzModalModule,
   NzFormModule, NzButtonModule, NzIconModule, NzSelectModule, NzInputModule, NzRadioModule,
@@ -39,7 +40,7 @@ const modules = [FormsModule, CommonModule, ReactiveFormsModule,  FieldxModule, 
 
 @NgModule({
   imports: [modules],
-  declarations: [declarations, ListxNzComponent],
+  declarations: [declarations],
   exports: [modules, declarations],
 
 })

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ComponentFactory, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
 import { ClickableStatusBarComponent } from './clickable-status-bar-component';
 import { CountStatusBarComponent } from './count-status-bar-component';
 import { CustomLoadingOverlay } from './custom-loading-overlay.component';
@@ -47,11 +47,15 @@ import { CustomTooltip } from './custom-tooltip-component';
        (cellValueChanged)="onCellValueChanged($event)"
       (gridReady)="onGridReady($event)"
     ></ag-grid-angular>
-  </div>`,
+  </div>
+
+
+  `,
 })
 export class AggridComponent {
   private gridApi;
   private gridColumnApi;
+
 
   // update transactions
   // https://www.ag-grid.com/javascript-grid-rxjs/
@@ -318,4 +322,10 @@ export class AggridComponent {
         this.rowData = data;
       });
   }
+
+
+
+
 }
+
+

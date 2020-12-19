@@ -1,16 +1,21 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, } from '@angular/core';
 import { FormGroup, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { TestComponent } from './test.component';
 
 @Component({
   templateUrl: './fieldxNzForm.component.html'
 })
 export class FieldxNzFormComponent implements OnInit {
 
+
+  @ViewChild("formContainer", { read: ViewContainerRef }) formContainerRef;
   query$: Observable<any>;
   paxValidator: any;
   showBrave = true;
   braveOptions = [];
+  formVisible = false;
+  formType = 'inline';
 
 
   checkOptionsOne = [
@@ -19,7 +24,8 @@ export class FieldxNzFormComponent implements OnInit {
     { label: 'Orange', value: 'Orange', checked: false }
   ];
 
-  constructor() {
+  constructor(
+    private resolver: ComponentFactoryResolver) {
 
     // this.query$ = this.qx.call(queryStr).pipe(
     //   map((result) => result?.data?.students[0]));
@@ -47,7 +53,10 @@ export class FieldxNzFormComponent implements OnInit {
 
   }
 
-
+  showForm(type) {
+    this.formType = type;
+    this.formVisible = !this.formVisible;
+  }
 
   onSubmit(value) {
     // if (this.validate()) {
@@ -59,6 +68,16 @@ export class FieldxNzFormComponent implements OnInit {
     this.showBrave = !this.showBrave;
   }
 
+
+
+  loadComponent() {
+    const componentFactory = this.resolver.resolveComponentFactory(TestComponent);
+
+    this.formContainerRef.clear();
+
+    const componentRef = this.formContainerRef.createComponent(componentFactory);
+    componentRef.instance.count = 2;
+  }
 
 
 }

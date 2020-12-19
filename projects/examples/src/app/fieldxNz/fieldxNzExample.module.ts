@@ -10,6 +10,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { TestComponent } from './test.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [FieldxNzLayoutComponent, FieldxNzFormComponent],
+  declarations: [FieldxNzLayoutComponent, FieldxNzFormComponent, TestComponent],
   imports: [SharedModule, RouterModule.forChild(routes), FieldxNzModule, NzIconModule,
     NzDrawerModule, NzModalModule, HttpClientModule, NzTabsModule, NzLayoutModule]
 })
