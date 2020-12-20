@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UUID } from 'angular2-uuid';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { listDefinition } from './listx';
 
@@ -27,12 +28,13 @@ import { listDefinition } from './listx';
       [loadingOverlayComponent]="def.loadingOverlayComponent"
       [loadingOverlayComponentParams]="def.loadingOverlayComponentParams"
       [stopEditingWhenGridLosesFocus]="stopEditingWhenGridLosesFocus"
-      [rowData]="rowData"
+      [rowData]="rowData$ | async"
       [statusBar]="def.statusBar"
       [sideBar]="def.sideBar"
       [rowSelection]="rowSelection"
       [rowClassRules]="def.rowClassRules"
       (selectionChanged)="onSelectionChanged($event)"
+      (rowClicked)="onRowClicked($event)"
       (cellValueChanged)="onCellValueChanged($event)"
       [rowGroupPanelShow]="rowGroupPanelShow"
       [pivotPanelShow]="pivotPanelShow"
@@ -58,6 +60,7 @@ export class ListxNzComponent implements OnInit {
   @Input() rowGroupPanelShow: 'never' | 'always' | 'onlyWhenGrouping' = 'never';
   @Input() pivotPanelShow: 'never' | 'always' | 'onlyWhenPivoting' = 'never';
   @Input() sizeToFit = true;
+  @Output() rowClicked = new EventEmitter();
   @Output() selectionChanged = new EventEmitter();
   @Output() cellValueChanged = new EventEmitter();
 
@@ -66,15 +69,14 @@ export class ListxNzComponent implements OnInit {
 
   @Input() def: listDefinition;
   listVisible = true;
-  rowData = [];
+  @Input() rowData$: any;
 
-  constructor(private http: HttpClient ) {
+  constructor(private http: HttpClient) {
     this.window = window;
   }
   ngOnInit(): void {
     // if (this.sizeToFit) { this.sizeColumnsToFit(); }
   }
-
 
 
   onGridReady(params) {
@@ -83,15 +85,11 @@ export class ListxNzComponent implements OnInit {
 
     params.api.setSortModel(this.def.sortModel);
 
-    this.http
-      .get(
-        'https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/olympicWinnersSmall.json'
-      )
-      .subscribe((data: []) => {
-        this.rowData = data;
-      });
   }
 
+  onRowClicked({ data }: any) {
+    this.rowClicked.emit(data);
+  }
   onSelectionChanged(e) {
     var selectedRows = this.gridApi.getSelectedRows();
     const selected = selectedRows?.length === 1 ? selectedRows[0] : selectedRows;
@@ -106,6 +104,10 @@ export class ListxNzComponent implements OnInit {
     this.gridApi.setQuickFilter(value);
   }
 
+  // sport: {type: 'set',values: ['Swimming']}
+  filterSwimming(filter: any) {
+    this.gridApi.setFilterModel(filter);
+  }
 
   sizeColumnsToFit() {
     this.gridApi.sizeColumnsToFit();

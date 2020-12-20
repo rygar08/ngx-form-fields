@@ -7,21 +7,26 @@ import { CustomNoRowsOverlay } from './custom-norows-overlay.component';
 import { CustomTooltip } from './custom-tooltip-component';
 import { componentViewer, listDefinition } from './listx';
 import { ModalxService } from './modalx.service';
+import { Observable } from 'rxjs';
 
 
 
 @Component({
   template: `<div class="example-wrapper" style="height: 500px" >
-              <listx [def]="listDef" (selectionChanged)="selectionChanged($event)" ></listx>
+              <listx [def]="listDef" (rowClicked)="onRowClicked($event)" [rowData$]="rowData$" ></listx>
             </div>
   `,
 })
 export class TestingGridComponent {
 
   listDef: listDefinition;
+  rowData$: Observable<any>;
 
 
-  constructor(private http: HttpClient, private mx: ModalxService) {
+  constructor(private http: HttpClient,
+          private mx: ModalxService) {
+
+    this.rowData$ = http.get('https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/olympicWinnersSmall.json');
 
     this.listDef = {
       columnDefs: [
@@ -67,11 +72,11 @@ export class TestingGridComponent {
       }
     }
   }
-
-  selectionChanged(data) {
-    const formViewer = new componentViewer({ component: TestComponent, maskCloseable: true, closeable: true, width: '80%',  type: 'modal', data: { athlete: data.athlete } });
+  onRowClicked(data) {
+    const formViewer = new componentViewer({ component: TestComponent, maskCloseable: true, closeable: true, width: 500,  type: 'drawer', data: { athlete: data.athlete } });
     this.mx.show(formViewer);
   }
+
 
 
 
