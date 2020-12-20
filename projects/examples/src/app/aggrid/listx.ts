@@ -1,7 +1,6 @@
+import { Type } from "@angular/core";
+import { OptionsFactory } from "ag-grid-community/dist/lib/filter/provided/optionsFactory";
 import { Observable } from "rxjs";
-import { componentViewer } from "../fieldxNz/test.component";
-
-
 
 export class listDefinition {
 
@@ -92,10 +91,8 @@ export class listDefinition {
   // };
   columnTypes?: any;
 
-  formViewer?: componentViewer;
-
   // { toolPanels: ['columns'] }
-  sideBar? = { toolPanels: ['columns'] };
+  sideBar?= { toolPanels: ['columns'] };
 
   // this.statusBar = {
   //   statusPanels: [
@@ -159,6 +156,47 @@ export class listDefinition {
   //   },
   // ];
   sortModel?: any;
-  rowData$: Observable<any>;
+  rowData$?: Observable<any>;
 
 }
+
+
+
+
+export class componentViewer {
+
+  component: Type<any>;
+  data: any;
+  type: 'modal' | 'drawer';
+  title: string;
+  width: number | string;
+  closeable: boolean;
+  maskCloseable: boolean;
+  placement: 'left' | 'right';
+  Style: string;
+
+    constructor(options: {
+      component: Type<any>,
+      data?: any,
+      type?: 'modal' | 'drawer',
+      title?: string,
+      width?: number | string,
+      closeable?: boolean,
+      maskCloseable?: boolean,
+      placement?: 'left' | 'right',
+      Style?: string
+    }) {
+     this.component = options.component;
+     this.data =  options.data;
+     this.type = options.type || 'modal';
+     this.title = options.title;
+     this.width = options.width || 400;
+     this.closeable = options.closeable === undefined ? true : options.closeable;
+     this.maskCloseable =  options.closeable === undefined ? true : options.maskCloseable;
+     this.placement = options.placement || 'right';
+     this.Style = options.Style || '';
+
+  }
+
+}
+

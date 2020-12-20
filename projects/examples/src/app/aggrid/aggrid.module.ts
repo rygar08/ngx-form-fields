@@ -12,6 +12,10 @@ import { ClickableStatusBarComponent } from './clickable-status-bar-component';
 import { CustomTooltip } from './custom-tooltip-component';
 import { ListxNzComponent } from './listx.component';
 import { TestingGridComponent } from './testinggrid.component';
+import { ModalxService } from './modalx.service';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { TestComponent } from './test.component';
 
 const routes: Routes = [
   {
@@ -22,8 +26,12 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AggridComponent, CustomLoadingOverlay, CustomNoRowsOverlay ,
-    CountStatusBarComponent , ClickableStatusBarComponent, CustomTooltip, ListxNzComponent, TestingGridComponent],
-  imports: [SharedModule, RouterModule.forChild(routes), HttpClientModule, AgGridModule.withComponents([CustomTooltip, CustomLoadingOverlay, CustomNoRowsOverlay, CountStatusBarComponent])]
+  declarations: [AggridComponent, CustomLoadingOverlay, CustomNoRowsOverlay, TestComponent,
+    CountStatusBarComponent, ClickableStatusBarComponent, CustomTooltip, ListxNzComponent, TestingGridComponent],
+  imports: [SharedModule, RouterModule.forChild(routes), HttpClientModule, NzDrawerModule, NzModalModule, AgGridModule.withComponents([CustomTooltip,
+    CustomLoadingOverlay, CustomNoRowsOverlay, CountStatusBarComponent, ])],
+  providers: [
+    ModalxService
+  ]
 })
 export class AggridExampleModule { }

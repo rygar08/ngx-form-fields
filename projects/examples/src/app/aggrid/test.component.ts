@@ -1,4 +1,4 @@
-import { Component, OnInit, SkipSelf,  Type } from '@angular/core';
+import { Component, OnInit,   Type } from '@angular/core';
 import { ModalxService } from './modalx.service';
 
 
@@ -8,12 +8,15 @@ import { ModalxService } from './modalx.service';
 
   <p>test works! {{count}}</p>
   <button nzType="primary" (click)="close()" nz-button>Confirm</button>
+  {{ athlete }}
+
 
   `
 })
 export class TestComponent implements OnInit {
 
   count = 0;
+  athlete = 'athlete';
 
   constructor(private mx: ModalxService) {
 
@@ -29,17 +32,3 @@ export class TestComponent implements OnInit {
 
 }
 
-
-
-
-export class componentViewer {
-  component: Type<any>;
-  data?: any;
-  type?: 'modal' | 'drawer' = 'modal';
-  title?: string;
-  width? = 400;
-  closeable? = true;
-  maskCloseable? = true;
-  placement?: 'left' | 'right' = 'right';
-  Style?: string;
-}

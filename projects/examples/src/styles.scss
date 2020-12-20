@@ -2,7 +2,7 @@
 @import url('ng-zorro-antd/src/ng-zorro-antd.min.css');
 // @import url('../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css');
 @import "ag-grid-community/dist/styles/ag-grid.scss";
-@import "ag-grid-community/dist/styles/ag-theme-balham-dark.css";
+@import "ag-grid-community/dist/styles/ag-theme-balham.css";
 // node_modules\ng-zorro-antd\src\ng-zorro-antd.css
 
 .example-wrapper {
@@ -17,11 +17,12 @@
 }
 
 .sick-days-warning {
-  background-color: sandybrown !important;
+  border-left: solid 1px red;
 }
 
 .sick-days-breach {
-  background-color: lightcoral !important;
+  color: red !important;
+  font-weight: bold;
 }
 
 .my-class-1 {

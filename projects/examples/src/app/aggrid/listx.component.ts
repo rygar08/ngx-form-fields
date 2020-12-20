@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { environment } from '../../environments/environment';
 import { listDefinition } from './listx';
@@ -58,13 +58,17 @@ export class ListxNzComponent implements OnInit {
   @Input() rowGroupPanelShow: 'never' | 'always' | 'onlyWhenGrouping' = 'never';
   @Input() pivotPanelShow: 'never' | 'always' | 'onlyWhenPivoting' = 'never';
   @Input() sizeToFit = true;
+  @Output() selectionChanged = new EventEmitter();
+  @Output() cellValueChanged = new EventEmitter();
+
+
   window: any;
 
   @Input() def: listDefinition;
   listVisible = true;
   rowData = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient ) {
     this.window = window;
   }
   ngOnInit(): void {
@@ -90,12 +94,12 @@ export class ListxNzComponent implements OnInit {
 
   onSelectionChanged(e) {
     var selectedRows = this.gridApi.getSelectedRows();
-    document.querySelector('#selectedRows').innerHTML =
-      selectedRows.length === 1 ? selectedRows[0].athlete : '';
+    const selected = selectedRows?.length === 1 ? selectedRows[0] : selectedRows;
+    this.selectionChanged.emit(selected);
   }
 
   onCellValueChanged(event) {
-    console.log('data after changes is: ', event.data);
+    this.cellValueChanged.emit(event.data);
   }
 
   setQuickFilter(value) {

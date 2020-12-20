@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  theme: 'ag-theme-balham-dark'
+  theme: 'ag-theme-balham'
 };
 
 /*

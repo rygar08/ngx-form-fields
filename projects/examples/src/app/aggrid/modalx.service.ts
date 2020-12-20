@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { NzDrawerRef, NzDrawerService } from 'ng-zorro-antd/drawer';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { componentViewer } from './test.component';
+import { componentViewer } from './listx';
 
 @Injectable()
 export class ModalxService {
@@ -26,7 +26,7 @@ export class ModalxService {
         nzTitle: item.title,
         nzContent: item.component,
         nzContentParams: item.data,
-        nzMaskClosable: item.closeable,
+        nzMaskClosable: item.maskCloseable,
         nzClosable: item.closeable,
         nzWidth: item.width
       });
