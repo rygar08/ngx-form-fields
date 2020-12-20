@@ -10,25 +10,20 @@ import 'ag-grid-enterprise';
 import { CountStatusBarComponent } from './count-status-bar-component';
 import { ClickableStatusBarComponent } from './clickable-status-bar-component';
 import { CustomTooltip } from './custom-tooltip-component';
+import { ListxNzComponent } from './listx.component';
+import { TestingGridComponent } from './testinggrid.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AggridComponent,
-    children: [
-      // Booking Items
-      { path: '', redirectTo: 'form', pathMatch: 'full' },
-      {
-        path: 'form',
-        component: AggridComponent
-      }
-    ]
+    component: TestingGridComponent
   }
 ];
 
 
 @NgModule({
-  declarations: [AggridComponent, CustomLoadingOverlay, CustomNoRowsOverlay ,CountStatusBarComponent , ClickableStatusBarComponent, CustomTooltip],
+  declarations: [AggridComponent, CustomLoadingOverlay, CustomNoRowsOverlay ,
+    CountStatusBarComponent , ClickableStatusBarComponent, CustomTooltip, ListxNzComponent, TestingGridComponent],
   imports: [SharedModule, RouterModule.forChild(routes), HttpClientModule, AgGridModule.withComponents([CustomTooltip, CustomLoadingOverlay, CustomNoRowsOverlay, CountStatusBarComponent])]
 })
 export class AggridExampleModule { }

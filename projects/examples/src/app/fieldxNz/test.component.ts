@@ -34,12 +34,12 @@ export class TestComponent implements OnInit {
 
 export class componentViewer {
   component: Type<any>;
-  data: any;
-  type: 'modal' | 'drawer' = 'modal';
-  title: string;
-  width = 400;
-  closeable = true;
-  maskCloseable = true;
-  placement: 'left' | 'right' = 'right';
-  Style: string;
+  data?: any;
+  type?: 'modal' | 'drawer' = 'modal';
+  title?: string;
+  width? = 400;
+  closeable? = true;
+  maskCloseable? = true;
+  placement?: 'left' | 'right' = 'right';
+  Style?: string;
 }
